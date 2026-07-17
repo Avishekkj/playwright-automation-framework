@@ -1,0 +1,32 @@
+{
+  "name": "playwright-api-framework",
+  "version": "1.0.0",
+  "description": "Enterprise-grade API automation framework (Playwright + TypeScript) targeting GoRest",
+  "type": "module",
+  "scripts": {
+    "test": "playwright test",
+    "test:smoke": "playwright test --grep @smoke",
+    "test:regression": "playwright test --grep @regression",
+    "test:negative": "playwright test --grep @negative",
+    "typecheck": "tsc --noEmit",
+    "report": "playwright show-report"
+  },
+  "keywords": [
+    "playwright",
+    "api",
+    "automation",
+    "typescript",
+    "testing"
+  ],
+  "author": "Avishek Kumar Jha",
+  "license": "MIT",
+  "devDependencies": {
+    "@faker-js/faker": "^9.3.0",
+    "@playwright/test": "^1.49.1",
+    "@types/node": "^22.10.2",
+    "csv-parse": "^7.0.1",
+    "dotenv": "^16.4.7",
+    "typescript": "^5.7.2",
+    "zod": "^3.24.1"
+  }
+}

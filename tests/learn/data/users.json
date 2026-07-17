@@ -1,0 +1,5 @@
+[
+  { "name": "Asha Rao",    "email": "asha.rao@test.com",    "role": "admin" },
+  { "name": "Ben Carter",  "email": "ben.carter@test.com",  "role": "user" },
+  { "name": "Chen Wei",    "email": "chen.wei@test.com",    "role": "user" }
+]

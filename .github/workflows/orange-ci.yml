@@ -1,0 +1,66 @@
+name: OrangeHRM UI Tests
+
+# run on every push, and allow manual runs from the Actions tab
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  # ── TEST JOB: fans out into 4 parallel runners (shards) ──
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false            # if one shard fails, keep the others running
+      matrix:
+        shard: [1, 2, 3, 4]       # 4 parallel runners
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+
+      # Playwright splits the suite; this runner handles its slice (e.g. 2/4)
+      - name: Run shard ${{ matrix.shard }}
+        run: npx playwright test --config playwright.orange.config.ts --shard=${{ matrix.shard }}/4
+
+      # each shard uploads its 'blob' result for the merge job
+      - uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() }}
+        with:
+          name: blob-report-${{ matrix.shard }}
+          path: blob-report/
+          retention-days: 1
+
+  # ── MERGE JOB: combine the 4 blob reports into ONE HTML report ──
+  merge-report:
+    if: ${{ !cancelled() }}
+    needs: [test]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+
+      # pull down all 4 shards' blob reports into one folder
+      - uses: actions/download-artifact@v4
+        with:
+          path: all-blob-reports
+          pattern: blob-report-*
+          merge-multiple: true
+
+      - name: Merge into a single HTML report
+        run: npx playwright merge-reports --reporter html ./all-blob-reports
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: html-report
+          path: playwright-report/
+          retention-days: 7
