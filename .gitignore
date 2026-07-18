@@ -5,6 +5,8 @@ results/
 test-results/
 blob-report/
 all-blob-reports/
+allure-results/
+allure-report/
 .auth/
 *.log
 .DS_Store

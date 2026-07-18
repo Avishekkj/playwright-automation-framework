@@ -2,6 +2,7 @@ import { test, expect } from '../../src/fixtures/apiFixtures';
 import { postSchema, commentSchema } from '../../src/schemas/post.schema';
 import { buildPost, buildComment } from '../../src/utils/dataFactory';
 import { expectSchema } from '../../src/utils/assertions';
+import { feature, severity } from 'allure-js-commons';
 
 /**
  * End-to-end business flow across THREE resources, using the `testUser`
@@ -9,6 +10,11 @@ import { expectSchema } from '../../src/utils/assertions';
  *   user -> create post for user -> add comment to post -> verify the chain.
  */
 test.describe('Posts API — end-to-end journey', () => {
+  test.beforeEach(async () => {
+    await feature('Posts');
+    await severity('critical');
+  });
+
   test('create a post and comment for a user', { tag: ['@regression'] }, async ({ posts, testUser }) => {
     // 1. Post belongs to the fixture-provided user
     const postRes = await posts.createForUser(testUser.id, buildPost());

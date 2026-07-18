@@ -6,13 +6,14 @@ on:
   workflow_dispatch:
 
 jobs:
-  # ── TEST JOB: fans out into 4 parallel runners (shards) ──
+  # ── TEST JOB: 2-D matrix = 3 browsers × 4 shards = 12 parallel runners ──
   test:
     runs-on: ubuntu-latest
     strategy:
-      fail-fast: false            # if one shard fails, keep the others running
+      fail-fast: false            # one failing job doesn't stop the others
       matrix:
-        shard: [1, 2, 3, 4]       # 4 parallel runners
+        browser: [chromium, firefox, webkit]   # cross-browser
+        shard: [1, 2, 3, 4]                     # sharded within each browser
     steps:
       - uses: actions/checkout@v4
 
@@ -22,17 +23,18 @@ jobs:
           cache: npm
 
       - run: npm ci
-      - run: npx playwright install --with-deps chromium
+      # install ONLY this job's browser (faster than installing all three everywhere)
+      - run: npx playwright install --with-deps ${{ matrix.browser }}
 
-      # Playwright splits the suite; this runner handles its slice (e.g. 2/4)
-      - name: Run shard ${{ matrix.shard }}
-        run: npx playwright test --config playwright.orange.config.ts --shard=${{ matrix.shard }}/4
+      # run this browser's slice of the suite (using the dedicated CI config)
+      - name: Run ${{ matrix.browser }} shard ${{ matrix.shard }}
+        run: npx playwright test --config playwright.orange.ci.config.ts --project=${{ matrix.browser }} --shard=${{ matrix.shard }}/4
 
-      # each shard uploads its 'blob' result for the merge job
+      # unique artifact name per browser+shard so the merge job can collect them all
       - uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
         with:
-          name: blob-report-${{ matrix.shard }}
+          name: blob-report-${{ matrix.browser }}-${{ matrix.shard }}
           path: blob-report/
           retention-days: 1
 

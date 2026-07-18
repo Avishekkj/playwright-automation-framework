@@ -4,6 +4,13 @@
 
 import { test, expect } from '@playwright/test';
 
+// ── EXECUTION MODE for THIS file ─────────────────────────────────────────────
+// By default, tests in one file run SERIALLY on ONE worker.
+//   'parallel' -> the 5 tests here run at the SAME TIME across multiple workers.
+//   'serial'   -> run in order on ONE worker; if one FAILS, the rest are SKIPPED.
+// Flip the word below to compare, then watch the "using N workers" line.
+test.describe.configure({ mode: 'serial' });
+
 // a small HTML form we control
 const FORM = `
   <form>
@@ -31,7 +38,7 @@ test.beforeEach(async ({ page }) => {
 });
 
 // ---- CHECKBOX + toBeTruthy / toBeFalsy ----
-test('checkbox: check, assert, uncheck', async ({ page }) => {
+test('@checkbox checkbox: check, assert, uncheck', async ({ page }) => {
   const box = page.getByRole('checkbox', { name: 'Subscribe' });
 
   // starts unchecked
@@ -57,7 +64,7 @@ test('radio: only one can be selected', async ({ page }) => {
 });
 
 // ---- DROPDOWN (native <select>) ----
-test('dropdown: select an option', async ({ page }) => {
+test('@dropdown dropdown: select an option', async ({ page }) => {
   const country = page.locator('#country');
 
   await country.selectOption('us');            // by value
@@ -84,7 +91,7 @@ test('filter a list item, then split its text', async ({ page }) => {
 });
 
 // ---- Promise.all: run several async reads AT THE SAME TIME ----
-test('Promise.all reads all items in parallel', async ({ page }) => {
+test('@promise Promise.all reads all items in parallel', async ({ page }) => {
   const fruits = page.locator('#fruits li');
 
   // instead of awaiting one-by-one, fire all three reads together and wait once.

@@ -3,7 +3,7 @@
     "target": "ES2022",
     "module": "ESNext",
     "moduleResolution": "Bundler",
-    "lib": ["ES2022"],
+    "lib": ["ES2022", "DOM"],
     "types": ["node"],
     "strict": true,
     "noImplicitAny": true,
@@ -14,5 +14,5 @@
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true
   },
-  "include": ["src", "tests", "playwright.config.ts", "playwright.orange.config.ts", "playwright.ui.config.ts"]
+  "include": ["src", "tests", "playwright.config.ts", "playwright.orange.config.ts", "playwright.orange.ci.config.ts", "playwright.ui.config.ts", "playwright.lessons.config.ts"]
 }

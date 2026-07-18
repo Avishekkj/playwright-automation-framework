@@ -1,20 +1,31 @@
-import { defineConfig } from '@playwright/test';
+import { defineConfig, devices } from '@playwright/test';
 
-// A simple, standalone config just for our OrangeHRM learning tests.
-// Run it with:  npx playwright test --config playwright.orange.config.ts
+// LOCAL config for OrangeHRM tests. CI uses playwright.orange.ci.config.ts.
+// Run:  npx playwright test --config playwright.orange.config.ts --project=chromium
 export default defineConfig({
   testDir: './tests/orange',
   timeout: 60_000,               // OrangeHRM's demo can be a bit slow
-  expect: { timeout: 15_000 },   // give assertions more time on the slow demo
-  // CI safety net for the flaky external demo site:
-  retries: process.env.CI ? 2 : 0,          // re-run a failed test up to 2x in CI
-  workers: process.env.CI ? 1 : undefined,  // 1 worker/shard = gentler on the slow site
-                                            // (cross-shard parallelism still applies)
-  // In CI each shard writes a 'blob' report; the merge job combines them into
-  // one HTML report. Locally we keep the friendly 'list' output.
-  reporter: process.env.CI ? [['blob']] : [['list']],
+  expect: { timeout: 15_000 },
+  retries: 1,                    // retry once locally — absorbs the flaky demo
+                                 // (a test that only passes on retry is marked
+                                 //  "flaky" in the output, so you still see it)
+
+  // LOCAL reporters: terminal 'list' + Playwright 'html' + 'allure' results.
+  //  - Playwright HTML: npx playwright show-report
+  //  - Allure: writes raw results to allure-results/, then:
+  //      npx allure generate allure-results --clean -o allure-report
+  //      npx allure open allure-report
+  reporter: [['list'], ['html', { open: 'never' }], ['allure-playwright']],
+
   use: {
     trace: 'retain-on-failure',
     screenshot: 'only-on-failure',
   },
+
+  // Browser targets — pick one with --project=chromium | firefox | webkit
+  projects: [
+    { name: 'chromium', use: { ...devices['Desktop Chrome'] } },
+    { name: 'firefox', use: { ...devices['Desktop Firefox'] } },
+    { name: 'webkit', use: { ...devices['Desktop Safari'] } },
+  ],
 });

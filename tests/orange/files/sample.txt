@@ -1,0 +1,1 @@
+Hello from Playwright — this file is used to demo file upload.

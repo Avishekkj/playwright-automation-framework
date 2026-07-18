@@ -5,9 +5,15 @@
 import { test, expect, request as playwrightRequest } from '@playwright/test';
 import type { APIRequestContext } from '@playwright/test'; // just the TYPE for our api caller
 import { env } from '../../src/config/env';                // our settings (base URL etc.)
+import { feature, severity } from 'allure-js-commons';
 
 // describe = a folder/group that holds related tests. Name it for humans.
 test.describe('Auth — dynamic JWT login flow (DummyJSON)', () => {
+  test.beforeEach(async () => {
+    await feature('Authentication');
+    await severity('critical');
+  });
+
   // "ctx" = our reusable API caller. Declared here so every test can use it.
   let ctx: APIRequestContext;
 

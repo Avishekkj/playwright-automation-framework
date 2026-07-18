@@ -3,8 +3,14 @@ import { validationErrorSchema, type ValidationError } from '../../src/schemas/u
 import { buildUser } from '../../src/utils/dataFactory';
 import { invalidUserCases } from '../../src/data/invalidUsers';
 import { expectSchema } from '../../src/utils/assertions';
+import { feature, severity } from 'allure-js-commons';
 
 test.describe('Users API — negative & edge cases', () => {
+  test.beforeEach(async () => {
+    await feature('Users');
+    await severity('normal');
+  });
+
   test('unauthenticated create is rejected with 401', { tag: ['@negative'] }, async ({ anonUsers }) => {
     const res = await anonUsers.create(buildUser());
     expect(res.status).toBe(401);

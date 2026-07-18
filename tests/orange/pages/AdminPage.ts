@@ -37,4 +37,19 @@ export class AdminPage {
     await this.usernameInput.fill(username);
     await this.searchButton.click();
   }
+
+  // delete the first result row: click its trash icon, then confirm the dialog
+  async deleteFirstResult()  {
+  // click the delete BUTTON on the first row, not the raw <i> icon
+  await this.resultRows.first().locator('button:has(.bi-trash)').click();
+
+  // web-first assertion: if the modal never opens, this fails fast
+  // at the REAL cause (~5s) instead of hanging the full 60s at the click
+  const confirm = this.page.getByRole('button', { name: 'Yes, Delete' });
+  await expect(confirm).toBeVisible();
+  await confirm.click();
+
+  // confirm the delete actually happened
+  await expect(this.page.getByText('Successfully Deleted')).toBeVisible();
+}
 }

@@ -1,8 +1,14 @@
 import { test, expect } from '../../src/fixtures/apiFixtures';
 import { userListSchema } from '../../src/schemas/user.schema';
 import { expectSchema, expectPaginationHeaders } from '../../src/utils/assertions';
+import { feature, severity } from 'allure-js-commons';
 
 test.describe('Users API — smoke', () => {
+  test.beforeEach(async () => {
+    await feature('Users');
+    await severity('normal');
+  });
+
   test(
     'GET /users returns a valid, paginated list',
     { tag: ['@smoke'] },
