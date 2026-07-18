@@ -2,6 +2,7 @@ name: Zenith HR UI Tests
 
 on:
   push:
+  pull_request:            # also run on PRs (the standard "gate" before merge)
   workflow_dispatch:
     inputs:
       TEST_ENV:
