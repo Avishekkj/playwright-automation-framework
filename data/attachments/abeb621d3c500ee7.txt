@@ -1,0 +1,5 @@
+✓ created employee: Auto Emp1784382795684
+✓ found employee in PIM
+✓ created admin user: autouser1784382795684
+✓ verified user in Admin
+✓ deleted user
