@@ -1,0 +1,1 @@
+downloaded to: /home/runner/work/playwright-automation-framework/playwright-automation-framework/test-results/report.txt
