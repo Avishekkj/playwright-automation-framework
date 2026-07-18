@@ -1,4 +1,4 @@
-// OrangeHRM — TC-06 (logout), TC-07 (Admin), TC-08 (PIM).
+// Zenith HR — TC-06 (logout), TC-07 (Admin), TC-08 (PIM).
 // beforeEach logs us in, so each test starts on the dashboard.
 
 import { test, expect } from '@playwright/test';
@@ -6,7 +6,7 @@ import { LoginPage } from './pages/LoginPage';
 import { DashboardPage } from './pages/DashboardPage';
 import { PimPage } from './pages/PimPage';
 
-test.describe('OrangeHRM - navigation & logout', () => {
+test.describe('Zenith HR - navigation & logout', () => {
 
   // log in before each test -> we land on the dashboard
   test.beforeEach(async ({ page }) => {

@@ -1,0 +1,97 @@
+name: Zenith HR UI Tests
+
+on:
+  push:
+  workflow_dispatch:
+    inputs:
+      TEST_ENV:
+        description: 'Environment to run against'
+        type: choice
+        options: [dev, staging, prod]
+        default: staging
+
+# needed so the report job can publish to the gh-pages branch
+permissions:
+  contents: write
+
+# on push -> 'staging'; on manual run -> the chosen env
+env:
+  TEST_ENV: ${{ github.event.inputs.TEST_ENV || 'staging' }}
+
+jobs:
+  # ── TEST: 3 browsers × 4 shards = 12 parallel runners ──
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium, firefox, webkit]
+        shard: [1, 2, 3, 4]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps ${{ matrix.browser }}
+
+      - name: Run ${{ matrix.browser }} shard ${{ matrix.shard }} (env=${{ env.TEST_ENV }})
+        run: npx playwright test --config playwright.zenith.ci.config.ts --project=${{ matrix.browser }} --shard=${{ matrix.shard }}/4
+
+      # each shard uploads its Allure raw results (incl. environment.properties)
+      - uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() }}
+        with:
+          name: allure-results-${{ matrix.browser }}-${{ matrix.shard }}
+          path: allure-results/
+          retention-days: 1
+
+  # ── REPORT: merge results → generate Allure (with history) → publish + artifact ──
+  report:
+    if: ${{ !cancelled() }}
+    needs: [test]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # collect every shard's results into one folder
+      - name: Download all allure-results
+        uses: actions/download-artifact@v4
+        with:
+          path: allure-results
+          pattern: allure-results-*
+          merge-multiple: true
+
+      # bring the previous report's history so trends accumulate
+      - name: Load Allure history from gh-pages
+        uses: actions/checkout@v4
+        continue-on-error: true
+        with:
+          ref: gh-pages
+          path: gh-pages
+
+      # generate the report, restoring history + keeping the last 20 runs
+      - name: Generate Allure report (with history/trends)
+        uses: simple-elf/allure-report-action@v1.9
+        with:
+          allure_results: allure-results
+          gh_pages: gh-pages
+          allure_history: allure-history
+          keep_reports: 20
+
+      # (1) publish to GitHub Pages — the shareable stakeholder link
+      - name: Publish to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: allure-history
+
+      # (2) also upload the report as a downloadable artifact
+      - name: Upload Allure report artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: allure-report
+          path: allure-history/
+          retention-days: 14

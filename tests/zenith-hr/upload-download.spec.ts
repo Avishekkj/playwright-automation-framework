@@ -4,7 +4,7 @@
 //   • upload   -> locator.setInputFiles(path)
 //   • download -> page.waitForEvent('download') + download.saveAs(path)
 //
-// (Real apps use the SAME calls — e.g. OrangeHRM's employee photo upload is just
+// (Real apps use the SAME calls — e.g. Zenith HR's employee photo upload is just
 //  setInputFiles on its hidden <input type="file">.)
 
 import { test, expect } from '@playwright/test';

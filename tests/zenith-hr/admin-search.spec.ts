@@ -1,4 +1,4 @@
-// OrangeHRM — TC-09 (search existing user) + TC-10 (search non-existent user).
+// Zenith HR — TC-09 (search existing user) + TC-10 (search non-existent user).
 // beforeEach: log in, then open the Admin module, so each test starts there.
 
 import { test, expect } from '@playwright/test';
@@ -6,7 +6,7 @@ import { LoginPage } from './pages/LoginPage';
 import { DashboardPage } from './pages/DashboardPage';
 import { AdminPage } from './pages/AdminPage';
 
-test.describe('OrangeHRM - Admin user search', () => {
+test.describe('Zenith HR - Admin user search', () => {
   let admin: AdminPage;
 
   test.beforeEach(async ({ page }) => {

@@ -1,5 +1,5 @@
 // PAGE OBJECT for Admin → Add User (turn an employee into a system user / admin).
-// This page has the tricky OrangeHRM widgets: custom dropdowns + an autocomplete.
+// This page has the tricky Zenith HR widgets: custom dropdowns + an autocomplete.
 
 import { expect, type Page, type Locator } from '@playwright/test';
 
@@ -35,7 +35,7 @@ export class AdminAddUserPage {
     await expect(this.page).toHaveURL(/saveSystemUser/);
   }
 
-  // helper: pick a value from an OrangeHRM CUSTOM dropdown (not a native <select>)
+  // helper: pick a value from an Zenith HR CUSTOM dropdown (not a native <select>)
   private async selectDropdown(labelText: string, optionText: string) {
     const group = this.page.locator('.oxd-input-group').filter({ hasText: labelText });
     await group.locator('.oxd-select-text').click();          // open it

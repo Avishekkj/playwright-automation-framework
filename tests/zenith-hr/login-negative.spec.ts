@@ -1,10 +1,10 @@
-// OrangeHRM — NEGATIVE login tests. Proves the login FAILS correctly.
+// Zenith HR — NEGATIVE login tests. Proves the login FAILS correctly.
 // Notice: we REUSE the same LoginPage page object — no new locators needed.
 
 import { test, expect } from '@playwright/test';
 import { LoginPage } from './pages/LoginPage';
 
-test.describe('OrangeHRM - negative login', () => {
+test.describe('Zenith HR - negative login', () => {
   let loginPage: LoginPage;   // shared across the tests below
 
   // beforeEach: open a fresh login page before EACH test

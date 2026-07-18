@@ -7,7 +7,7 @@ import { test, expect } from '@playwright/test';
 import { LoginPage } from './pages/LoginPage';         // import the class (blueprint)
 import { DashboardPage } from './pages/DashboardPage';
 
-test('OrangeHRM login + explore the menu list (POM)', async ({ page }) => {
+test('Zenith HR login + explore the menu list (POM)', async ({ page }) => {
 
   // 🔷 `new LoginPage(page)` = CREATE AN OBJECT from the blueprint.
   //    This is the moment the constructor in LoginPage.ts runs. We pass in

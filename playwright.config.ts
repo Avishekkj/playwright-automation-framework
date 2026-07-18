@@ -9,8 +9,8 @@ import { env } from './src/config/env';
  */
 export default defineConfig({
   testDir: './tests',
-  // keep the UI/OrangeHRM learning tests out of the API run (they use their own configs)
-  testIgnore: ['tests/ui/**', 'tests/orange/**'],
+  // keep the Zenith HR UI + web-concepts tests out of the API run (own configs)
+  testIgnore: ['tests/ui/**', 'tests/zenith-hr/**', 'tests/web/**'],
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,

@@ -1,12 +1,13 @@
 // ============================================================================
-// LoginPage.ts — a CLASS (a Page Object) for the OrangeHRM login screen.
+// LoginPage.ts — a CLASS (a Page Object) for the Zenith HR login screen.
 // This file is where we explain the OOP concepts: class, constructor, this.
 // ============================================================================
 
 import { expect, type Page, type Locator } from '@playwright/test';
 
-// a constant shared by this file only
-const LOGIN_URL = 'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login';
+// the login path is RELATIVE — the base URL comes from the config (multi-env),
+// so the same test runs against dev / staging / prod via TEST_ENV.
+const LOGIN_PATH = '/web/index.php/auth/login';
 
 // 🔷 CLASS = a BLUEPRINT for making objects.
 //    "class LoginPage" describes what every LoginPage object HAS (properties)
@@ -52,7 +53,7 @@ export class LoginPage {
   // 🔷 METHOD = a function that BELONGS to the class. Inside it, `this` refers
   //    to the object it was called on. `await loginPage.open()` runs this.
   async open() {
-    await this.page.goto(LOGIN_URL);   // use the page we stored in the constructor
+    await this.page.goto(LOGIN_PATH);  // resolved against baseURL from the config
   }
 
   // a method with PARAMETERS (user, pass) = inputs the caller provides.
