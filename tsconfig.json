@@ -14,5 +14,5 @@
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true
   },
-  "include": ["src", "tests", "playwright.config.ts", "playwright.zenith.config.ts", "playwright.zenith.ci.config.ts", "playwright.ui.config.ts", "playwright.web.config.ts"]
+  "include": ["src", "tests", "zenith-hr-api-tests", "playwright.zenith-api.config.ts", "playwright.config.ts", "playwright.zenith.config.ts", "playwright.zenith.ci.config.ts", "playwright.ui.config.ts", "playwright.web.config.ts"]
 }
