@@ -58,4 +58,25 @@ export class ZenithHrApi {
       await this.request.delete(EMPLOYEES, { data: { ids: [empNumber] } }),
     );
   }
+
+  // Update personal info. IMPORTANT: only send string fields — sending null
+  // fields (birthday/gender/etc.) makes this endpoint return 500.
+  async updatePersonalDetails(
+    empNumber: number,
+    data: { firstName: string; middleName?: string; lastName: string; employeeId: string; otherId?: string; drivingLicenseNo?: string },
+  ) {
+    return this.wrap<{ data: { firstName: string; lastName: string } }>(
+      await this.request.put(`${EMPLOYEES}/${empNumber}/personal-details`, { data }),
+    );
+  }
+
+  // Add/update job details (job title, employment status, category).
+  async updateJobDetails(
+    empNumber: number,
+    data: { jobTitleId?: number; empStatusId?: number; jobCategoryId?: number; joinedDate?: string | null },
+  ) {
+    return this.wrap<{ data: { empNumber: number } }>(
+      await this.request.put(`${EMPLOYEES}/${empNumber}/job-details`, { data }),
+    );
+  }
 }

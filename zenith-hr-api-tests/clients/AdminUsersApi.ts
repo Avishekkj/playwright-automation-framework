@@ -44,7 +44,7 @@ export class AdminUsersApi {
 
   async getUser(id: number) {
     log.api(`GET  user id=${id}`);
-    return this.wrap<{ data: { id: number; userName: string } }>(
+    return this.wrap<{ data: { id: number; userName: string; status: boolean; employee: { empNumber: number } | null } }>(
       await this.request.get(`${USERS}/${id}`),
     );
   }
@@ -53,6 +53,15 @@ export class AdminUsersApi {
     log.api(`POST create user "${data.username}"`);
     return this.wrap<{ data: { id: number; userName: string } }>(
       await this.request.post(USERS, { data }),
+    );
+  }
+
+  // Update a user (e.g. disable by passing status:false). NOTE: this endpoint
+  // needs the password field present + changePassword:false, or it 422s.
+  async updateUser(id: number, data: UserInput) {
+    log.api(`PUT  update user id=${id} (status=${data.status})`);
+    return this.wrap<{ data: { id: number; status: boolean } }>(
+      await this.request.put(`${USERS}/${id}`, { data: { changePassword: false, ...data } }),
     );
   }
 

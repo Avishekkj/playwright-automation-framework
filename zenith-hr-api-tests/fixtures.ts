@@ -22,6 +22,7 @@ type Fixtures = {
   jobCategoryApi: CrudApi; // job categories
   workShiftApi: CrudApi; // work shifts
   adminUsersApi: AdminUsersApi; // system users (admin, logged in)
+  adminRequest: APIRequestContext; // raw logged-in Admin caller (ad-hoc GETs)
   essRequest: APIRequestContext; // a caller logged in as a NEW ESS user (for RBAC)
 };
 
@@ -73,6 +74,12 @@ export const test = base.extend<Fixtures>({
   adminUsersApi: async ({ playwright }, use) => {
     const ctx = await playwright.request.newContext({ baseURL: BASE_URL, storageState: AUTH_FILE });
     await use(new AdminUsersApi(ctx));
+    await ctx.dispose();
+  },
+
+  adminRequest: async ({ playwright }, use) => {
+    const ctx = await playwright.request.newContext({ baseURL: BASE_URL, storageState: AUTH_FILE });
+    await use(ctx);
     await ctx.dispose();
   },
 
