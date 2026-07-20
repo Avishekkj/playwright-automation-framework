@@ -10,3 +10,6 @@ allure-report/
 .auth/
 *.log
 .DS_Store
+
+# Winston log output
+logging/

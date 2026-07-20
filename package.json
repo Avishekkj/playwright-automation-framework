@@ -28,7 +28,9 @@
     "allure-playwright": "^3.10.2",
     "csv-parse": "^7.0.1",
     "dotenv": "^16.4.7",
+    "moment-timezone": "^0.6.3",
     "typescript": "^5.7.2",
+    "winston": "^3.19.0",
     "zod": "^3.24.1"
   }
 }
