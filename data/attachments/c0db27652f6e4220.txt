@@ -1,0 +1,13 @@
+  STEP 1: Log in as Admin
+  STEP 2: Create employee "E2e Life1784557600836" (employeeId 557600836)
+  STEP 3: Landed on the employee profile (identity captured)
+  STEP 4: Verify the opened record shows the correct first name
+  STEP 5: Search the PIM list for "E2e Life1784557600836"
+  STEP 6: Open the record and rename firstName -> "E2eUpdated"
+  STEP 7: Set job details (Job Title + Employment Status)
+  STEP 8: Create an ESS user linked to the employee
+  STEP 9: Search System Users and verify the new user is listed
+  STEP 10: Delete the user (revoke system access)
+  STEP 11: Delete the employee from PIM
+  STEP 12: Confirm the employee no longer appears in a PIM search
+  ✅ Employee lifecycle E2E (UI) complete
