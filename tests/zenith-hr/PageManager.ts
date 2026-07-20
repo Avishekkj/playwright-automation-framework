@@ -17,6 +17,7 @@ import { DashboardPage } from './pages/DashboardPage';
 import { AdminPage } from './pages/AdminPage';
 import { PimPage } from './pages/PimPage';
 import { PimAddEmployeePage } from './pages/PimAddEmployeePage';
+import { PimEmployeeProfilePage } from './pages/PimEmployeeProfilePage';
 import { AdminAddUserPage } from './pages/AdminAddUserPage';
 
 export class PageManager {
@@ -28,6 +29,7 @@ export class PageManager {
   readonly adminPage: AdminPage;
   readonly pimPage: PimPage;
   readonly addEmployeePage: PimAddEmployeePage;
+  readonly employeeProfilePage: PimEmployeeProfilePage;
   readonly addUserPage: AdminAddUserPage;
 
   constructor(page: Page) {
@@ -38,6 +40,7 @@ export class PageManager {
     this.adminPage = new AdminPage(page);
     this.pimPage = new PimPage(page);
     this.addEmployeePage = new PimAddEmployeePage(page);
+    this.employeeProfilePage = new PimEmployeeProfilePage(page);
     this.addUserPage = new AdminAddUserPage(page);
   }
 }
