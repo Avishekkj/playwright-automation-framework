@@ -1,0 +1,194 @@
+name: Full Test Report (API · UI · E2E)
+
+# ONE place to see everything: runs the 4 categories, then publishes 4 clearly
+# separated Allure reports + a combined logs page to a single GitHub Pages URL.
+#
+#   Report site (after first run):
+#     https://<your-username>.github.io/<repo>/
+#       ├── api/        ← API tests report
+#       ├── e2e-api/    ← E2E API scenarios report
+#       ├── ui/         ← UI tests report
+#       ├── e2e-ui/     ← E2E UI scenarios report
+#       └── logs/       ← Winston info/error log files from every category
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      TEST_ENV:
+        description: 'Environment to run against'
+        type: choice
+        options: [dev, staging, prod]
+        default: staging
+
+permissions:
+  contents: write            # the publish job pushes to the gh-pages branch
+
+# only one report build at a time (avoids two runs racing on gh-pages)
+concurrency:
+  group: full-report
+  cancel-in-progress: true
+
+env:
+  TEST_ENV: ${{ github.event.inputs.TEST_ENV || 'staging' }}
+  # Encryption secrets (optional). If set as GitHub secrets, CI decrypts them;
+  # if not, the login falls back to the public demo password.
+  CRYPTO_SECRET: ${{ secrets.CRYPTO_SECRET }}
+  ADMIN_USERNAME: ${{ secrets.ADMIN_USERNAME }}
+  ADMIN_PASSWORD_ENC: ${{ secrets.ADMIN_PASSWORD_ENC }}
+
+jobs:
+  # ── run each category on its own runner, collect results + logs ──
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - category: api
+            title: API Tests
+            browser: ''            # pure API — no browser needed
+            cmd: npx playwright test --config playwright.zenith-api.config.ts --grep-invert "@e2e|@ui-verify"
+          - category: e2e-api
+            title: E2E API Scenarios
+            browser: ''
+            cmd: npx playwright test --config playwright.zenith-api.config.ts --grep "@e2e" --grep-invert "@ui-verify"
+          - category: ui
+            title: UI Tests
+            browser: chromium
+            cmd: npx playwright test --config playwright.zenith.ci.config.ts --project=chromium --grep-invert "@e2e"
+          - category: e2e-ui
+            title: E2E UI Scenarios
+            browser: chromium
+            cmd: npx playwright test --config playwright.zenith.ci.config.ts --project=chromium --grep "@e2e"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+
+      - name: Install browser (UI categories only)
+        if: ${{ matrix.browser != '' }}
+        run: npx playwright install --with-deps ${{ matrix.browser }}
+
+      - name: Run ${{ matrix.title }}
+        continue-on-error: true          # let the report build even if a test fails
+        run: |
+          mkdir -p logging
+          ${{ matrix.cmd }}
+
+      - name: Upload Allure results (${{ matrix.category }})
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: results-${{ matrix.category }}
+          path: allure-results/
+          if-no-files-found: ignore
+          retention-days: 1
+
+      - name: Upload log files (${{ matrix.category }})
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: logs-${{ matrix.category }}
+          path: logging/
+          if-no-files-found: ignore
+          retention-days: 7
+
+  # ── build the 4 reports + logs page and publish to one Pages URL ──
+  publish:
+    if: ${{ !cancelled() }}
+    needs: [test]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - uses: actions/setup-java@v4        # Allure CLI needs Java
+        with:
+          distribution: temurin
+          java-version: '17'
+      - run: npm ci
+
+      - name: Download all results
+        uses: actions/download-artifact@v4
+        with:
+          path: results
+          pattern: results-*
+      - name: Download all logs
+        uses: actions/download-artifact@v4
+        with:
+          path: logs
+          pattern: logs-*
+
+      - name: Generate the 4 Allure reports
+        run: |
+          for cat in api e2e-api ui e2e-ui; do
+            if [ -d "results/results-$cat" ] && [ -n "$(ls -A results/results-$cat 2>/dev/null)" ]; then
+              npx allure generate "results/results-$cat" --clean -o "site/$cat"
+            else
+              mkdir -p "site/$cat"
+              echo "<p>No results for $cat this run.</p>" > "site/$cat/index.html"
+            fi
+          done
+
+      - name: Collect log files into site/logs
+        run: |
+          mkdir -p site/logs
+          {
+            echo "<!doctype html><meta charset=utf-8><title>Test Logs</title>"
+            echo "<h1>Test result logs</h1><p>Winston output from every category.</p><ul>"
+            for cat in api e2e-api ui e2e-ui; do
+              for kind in info error; do
+                src="logs/logs-$cat/$kind.log"
+                if [ -f "$src" ] && [ -s "$src" ]; then
+                  cp "$src" "site/logs/$cat-$kind.log"
+                  echo "<li><a href=\"./$cat-$kind.log\">$cat / $kind.log</a></li>"
+                fi
+              done
+            done
+            echo "</ul><p><a href=\"../\">&larr; back to reports</a></p>"
+          } > site/logs/index.html
+
+      - name: Build the landing page (index)
+        run: |
+          cat > site/index.html <<'HTML'
+          <!doctype html><meta charset=utf-8><title>Zenith HR — Test Reports</title>
+          <style>
+            body{font-family:system-ui,Segoe UI,Arial,sans-serif;max-width:760px;margin:40px auto;padding:0 16px;color:#1F4E79}
+            h1{margin-bottom:4px} p.sub{color:#555;margin-top:0}
+            .grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:24px}
+            a.card{display:block;padding:20px;border:1px solid #dfe6ee;border-radius:10px;text-decoration:none;color:#1F4E79;background:#f7fafd}
+            a.card:hover{background:#eef4fa;border-color:#1F4E79}
+            a.card b{font-size:18px} a.card span{color:#555;font-size:14px}
+            .logs{margin-top:16px}
+          </style>
+          <h1>Zenith HR — Test Reports</h1>
+          <p class="sub">Playwright + TypeScript · API · UI · E2E</p>
+          <div class="grid">
+            <a class="card" href="./api/"><b>API Tests</b><br><span>endpoints · CRUD · schema · RBAC</span></a>
+            <a class="card" href="./e2e-api/"><b>E2E API Scenarios</b><br><span>full journeys via the API</span></a>
+            <a class="card" href="./ui/"><b>UI Tests</b><br><span>Page Object Model screens</span></a>
+            <a class="card" href="./e2e-ui/"><b>E2E UI Scenarios</b><br><span>full journeys via the browser</span></a>
+          </div>
+          <p class="logs">📄 <a href="./logs/">View test result logs (all categories)</a></p>
+          HTML
+
+      - name: Publish to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: site
+
+      - name: Upload the whole site as an artifact too
+        uses: actions/upload-artifact@v4
+        with:
+          name: full-report-site
+          path: site/
+          retention-days: 14

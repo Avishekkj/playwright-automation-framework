@@ -9,7 +9,7 @@
 import { test, expect } from '@playwright/test';
 import { PageManager } from './PageManager';
 
-test('E2E: add employee, make admin, verify, delete', async ({ page }) => {
+test('E2E: add employee, make admin, verify, delete', { tag: ['@e2e'] }, async ({ page }) => {
   const app = new PageManager(page);
 
   // unique data so parallel runs / repeat runs never collide

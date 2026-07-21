@@ -18,22 +18,25 @@ import 'dotenv/config';
 
 const ALGO = 'aes-256-gcm';
 
-// The master secret comes from the environment (.env locally, a secret in CI) —
-// NEVER hardcoded. scrypt stretches it into a proper 32-byte (256-bit) key.
-const SECRET = process.env.CRYPTO_SECRET ?? '';
-if (!SECRET) {
-  // fail loud rather than silently using a weak/empty key
-  throw new Error(
-    'CRYPTO_SECRET is not set. Add it to .env (any strong passphrase) — it is the ' +
-      'key used to encrypt/decrypt secrets. Keep it out of source control.',
-  );
+// The master secret comes from the environment (.env locally, a GitHub secret in
+// CI) — NEVER hardcoded. Resolved LAZILY (only when we actually encrypt/decrypt)
+// so importing this module never crashes a run that isn't using encryption.
+function getKey(): Buffer {
+  const secretKey = process.env.CRYPTO_SECRET ?? '';
+  if (!secretKey) {
+    throw new Error(
+      'CRYPTO_SECRET is not set. Add it to .env (any strong passphrase) — it is the ' +
+        'key used to encrypt/decrypt secrets. Keep it out of source control.',
+    );
+  }
+  // scrypt stretches the passphrase into a proper 32-byte (256-bit) key
+  return crypto.scryptSync(secretKey, 'zenith-hr-salt', 32);
 }
-const KEY = crypto.scryptSync(SECRET, 'zenith-hr-salt', 32);
 
 /** Encrypt a plaintext string → "iv:authTag:ciphertext" (all base64). */
 export function encrypt(plain: string): string {
   const iv = crypto.randomBytes(12); // 96-bit IV, recommended for GCM
-  const cipher = crypto.createCipheriv(ALGO, KEY, iv);
+  const cipher = crypto.createCipheriv(ALGO, getKey(), iv);
   const enc = Buffer.concat([cipher.update(plain, 'utf8'), cipher.final()]);
   const tag = cipher.getAuthTag(); // integrity check produced by GCM
   return [iv.toString('base64'), tag.toString('base64'), enc.toString('base64')].join(':');
@@ -45,7 +48,7 @@ export function decrypt(payload: string): string {
   if (!ivB64 || !tagB64 || !dataB64) {
     throw new Error('Invalid encrypted value — expected "iv:authTag:ciphertext".');
   }
-  const decipher = crypto.createDecipheriv(ALGO, KEY, Buffer.from(ivB64, 'base64'));
+  const decipher = crypto.createDecipheriv(ALGO, getKey(), Buffer.from(ivB64, 'base64'));
   decipher.setAuthTag(Buffer.from(tagB64, 'base64'));
   return Buffer.concat([
     decipher.update(Buffer.from(dataB64, 'base64')),

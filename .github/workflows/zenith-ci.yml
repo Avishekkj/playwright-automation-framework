@@ -46,7 +46,11 @@ jobs:
           path: allure-results/
           retention-days: 1
 
-  # ── REPORT: merge results → Allure (with history) → publish to Pages + artifact ──
+  # ── REPORT: merge the 3-browser × 2-shard results into one Allure report ──
+  # NOTE: this is the detailed CROSS-BROWSER UI report, published as a downloadable
+  # artifact only. The single shareable GitHub Pages site (API · UI · E2E, all in
+  # one place) is owned by .github/workflows/full-report.yml — only ONE workflow
+  # publishes to gh-pages so they never clash.
   report:
     if: ${{ !cancelled() }}
     needs: [test]
@@ -70,33 +74,12 @@ jobs:
           pattern: allure-results-*
           merge-multiple: true
 
-      - name: Load previous history from gh-pages
-        uses: actions/checkout@v4
-        continue-on-error: true
-        with:
-          ref: gh-pages
-          path: gh-pages
-
-      - name: Restore history so trends accumulate
-        run: |
-          if [ -d gh-pages/history ]; then
-            mkdir -p allure-results/history
-            cp -r gh-pages/history/* allure-results/history/ || true
-          fi
-
       - name: Generate Allure report
         run: npx allure generate allure-results --clean -o allure-report
 
-      - name: Publish to GitHub Pages (shareable link)
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_branch: gh-pages
-          publish_dir: allure-report
-
-      - name: Upload Allure report artifact
+      - name: Upload cross-browser Allure report artifact
         uses: actions/upload-artifact@v4
         with:
-          name: allure-report
+          name: allure-report-cross-browser
           path: allure-report/
           retention-days: 14
