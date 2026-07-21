@@ -1,0 +1,5 @@
+2026-07-22 00:29:34.092 +10:00 info:   -> [API] POST create user "ess4172911"
+2026-07-22 00:29:43.989 +10:00 info: STEP 1: ESS user tries to read admin/users
+2026-07-22 00:29:45.792 +10:00 info: STEP 2: ESS user tries to read admin/job-titles
+2026-07-22 00:29:47.463 +10:00 info: PASS ESS correctly blocked from admin endpoints
+2026-07-22 00:29:47.468 +10:00 info:   -> [API] DEL  user id=70

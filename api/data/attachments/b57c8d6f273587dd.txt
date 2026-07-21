@@ -1,0 +1,4 @@
+2026-07-22 00:29:23.295 +10:00 info: STEP 1: ask for an id that cannot exist
+2026-07-22 00:29:23.295 +10:00 info:   -> [API] GET  job category id=99999999
+2026-07-22 00:29:24.353 +10:00 info: STEP 2: expect 404 (not found)
+2026-07-22 00:29:24.354 +10:00 info: PASS missing resource returns 404

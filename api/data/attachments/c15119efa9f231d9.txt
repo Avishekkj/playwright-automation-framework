@@ -1,0 +1,4 @@
+2026-07-22 00:29:45.183 +10:00 info: STEP 1: create a user with no data (not allowed)
+2026-07-22 00:29:45.184 +10:00 info:   -> [API] POST create user "undefined"
+2026-07-22 00:29:46.566 +10:00 info: STEP 2: expect 422 (bad data)
+2026-07-22 00:29:46.567 +10:00 info: PASS missing fields rejected

@@ -1,0 +1,4 @@
+2026-07-22 00:29:01.561 +10:00 info: STEP 1: ask for the list of employment statuses
+2026-07-22 00:29:01.562 +10:00 info:   -> [API] GET  list employment statuss
+2026-07-22 00:29:03.291 +10:00 info: STEP 2: expect 200 and a valid first item
+2026-07-22 00:29:03.299 +10:00 info: PASS list works

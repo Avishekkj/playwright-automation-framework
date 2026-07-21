@@ -1,4 +1,0 @@
-2026-07-21 22:38:54.002 +10:00 info: STEP 1: ask for the list of work shifts
-2026-07-21 22:38:54.002 +10:00 info:   -> [API] GET  list work shifts
-2026-07-21 22:38:58.481 +10:00 info: STEP 2: expect 200 and a valid first item
-2026-07-21 22:38:58.483 +10:00 info: PASS list works

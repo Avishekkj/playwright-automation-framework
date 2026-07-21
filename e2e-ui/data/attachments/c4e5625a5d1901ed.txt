@@ -1,0 +1,12 @@
+2026-07-22 00:33:30.428 +10:00 info: STEP 1: Log in as Admin
+2026-07-22 00:33:34.903 +10:00 info: STEP 2: Create employee "Rbac U1784644410419"
+2026-07-22 00:33:43.051 +10:00 info: STEP 3: Create an ESS user for that employee
+2026-07-22 00:33:52.471 +10:00 info: STEP 4: Log in as the ESS user
+2026-07-22 00:33:55.063 +10:00 info: STEP 5: ESS can see "My Info" (permitted)
+2026-07-22 00:33:55.073 +10:00 info: STEP 6: ESS opens My Info → Personal Details (permitted)
+2026-07-22 00:33:56.252 +10:00 info: STEP 7: ESS attempts to reach Admin — the menu is not available
+2026-07-22 00:33:56.253 +10:00 info: STEP 8: Verify access is DENIED (no Admin menu item)
+2026-07-22 00:33:56.268 +10:00 info: STEP 9: Log back in as Admin
+2026-07-22 00:33:58.682 +10:00 info: STEP 10: Admin can reach Admin (permitted)
+2026-07-22 00:34:00.153 +10:00 info: STEP 11: Disable the ESS user (Status → Disabled)
+2026-07-22 00:34:07.149 +10:00 info: STEP 12: Confirm the disabled user can no longer log in
