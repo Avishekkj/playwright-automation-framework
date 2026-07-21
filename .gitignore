@@ -13,3 +13,6 @@ allure-report/
 
 # Winston log output
 logging/
+
+# Locator practice playground (personal scratch — not committed)
+tests/**/practice/
