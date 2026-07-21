@@ -1,0 +1,3 @@
+2026-07-21 21:52:33.111 +10:00 info: STEP 1: GET login page and extract the CSRF token
+2026-07-21 21:52:34.263 +10:00 info: STEP 2: POST /auth/validate as "" (password from secret vault)
+2026-07-21 21:52:38.043 +10:00 info: STEP 3: Verify the session is authenticated (GET admin/users → 200)

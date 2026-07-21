@@ -1,3 +1,3 @@
 "DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
-"","44999","E2E: add employee, make admin, verify, delete","chromium","2026-07-21","passed","2026-07-21","","e2e-employee.spec.ts","",""
-"","44829","hire an employee, verify, update, grant access, then offboard","chromium","2026-07-21","passed","2026-07-21","E2E [UI] — Employee Lifecycle","e2e/employee-lifecycle.ui.e2e.spec.ts","",""
+"","62381","E2E: add employee, make admin, verify, delete","chromium","2026-07-21","broken","2026-07-21","","e2e-employee.spec.ts","",""
+"","60824","hire an employee, verify, update, grant access, then offboard","chromium","2026-07-21","broken","2026-07-21","E2E [UI] — Employee Lifecycle","e2e/employee-lifecycle.ui.e2e.spec.ts","",""
