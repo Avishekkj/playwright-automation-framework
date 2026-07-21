@@ -1,45 +1,19 @@
-<!DOCTYPE html>
-<html dir="ltr" lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="allure-report-uuid" content="090afeaf-a8b4-4a06-9ed7-322ac02ded4c">
-    <title>Allure Report</title>
-    <link rel="icon" href="assets/favicon-BDLHVmV7.ico">
-    <!-- allure-core-head:start -->
-    <!-- allure-core-head:end -->
-</head>
-<body>
-    <div id="alert"></div>
-    <div id="content">
-        <span class="spinner">
-            <span class="spinner__circle"></span>
-        </span>
-    </div>
-    <div id="popup"></div>
-    <!-- allure-core-body:start -->
-    <script>
-        window.__allureCoreLoaded = new Promise(function (resolve, reject) {
-        window.__allureResolveCoreLoaded = resolve;
-        window.__allureRejectCoreLoaded = reject;
-    });
-    </script>
-    <script src="assets/index-BraRl9ss.js"></script>
-    <script>
-        if (typeof window.__allureResolveCoreLoaded === "function") {
-            window.__allureResolveCoreLoaded([]);
-        }
-    </script>
-    <!-- allure-core-body:end -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FVWC4GKEYS"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-FVWC4GKEYS', {
-          'allureVersion': '2.43.0',
-          'reportUuid': '090afeaf-a8b4-4a06-9ed7-322ac02ded4c',
-          'single_file': false
-        });
-    </script>
-</body>
-</html>
+<!doctype html><meta charset=utf-8><title>Zenith HR — Test Reports</title>
+<style>
+  body{font-family:system-ui,Segoe UI,Arial,sans-serif;max-width:760px;margin:40px auto;padding:0 16px;color:#1F4E79}
+  h1{margin-bottom:4px} p.sub{color:#555;margin-top:0}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:24px}
+  a.card{display:block;padding:20px;border:1px solid #dfe6ee;border-radius:10px;text-decoration:none;color:#1F4E79;background:#f7fafd}
+  a.card:hover{background:#eef4fa;border-color:#1F4E79}
+  a.card b{font-size:18px} a.card span{color:#555;font-size:14px}
+  .logs{margin-top:16px}
+</style>
+<h1>Zenith HR — Test Reports</h1>
+<p class="sub">Playwright + TypeScript · API · UI · E2E</p>
+<div class="grid">
+  <a class="card" href="./api/"><b>API Tests</b><br><span>endpoints · CRUD · schema · RBAC</span></a>
+  <a class="card" href="./e2e-api/"><b>E2E API Scenarios</b><br><span>full journeys via the API</span></a>
+  <a class="card" href="./ui/"><b>UI Tests</b><br><span>Page Object Model screens</span></a>
+  <a class="card" href="./e2e-ui/"><b>E2E UI Scenarios</b><br><span>full journeys via the browser</span></a>
+</div>
+<p class="logs">📄 <a href="./logs/">View test result logs (all categories)</a></p>

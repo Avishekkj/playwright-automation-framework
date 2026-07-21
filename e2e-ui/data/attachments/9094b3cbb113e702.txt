@@ -1,0 +1,13 @@
+2026-07-21 15:14:52.893 +10:00 info: STEP 1: Log in as Admin
+2026-07-21 15:14:58.548 +10:00 info: STEP 2: Create employee "E2e Life1784610892889" (employeeId 610892889)
+2026-07-21 15:15:07.762 +10:00 info: STEP 3: Landed on the employee profile (identity captured)
+2026-07-21 15:15:07.851 +10:00 info: STEP 4: Verify the opened record shows the correct first name
+2026-07-21 15:15:08.647 +10:00 info: STEP 5: Search the PIM list for "E2e Life1784610892889"
+2026-07-21 15:15:10.766 +10:00 info: STEP 6: Open the record and rename firstName -> "E2eUpdated"
+2026-07-21 15:15:16.626 +10:00 info: STEP 7: Set job details (Job Title + Employment Status)
+2026-07-21 15:15:22.705 +10:00 info: STEP 8: Create an ESS user linked to the employee
+2026-07-21 15:15:32.015 +10:00 info: STEP 9: Search System Users and verify the new user is listed
+2026-07-21 15:15:33.211 +10:00 info: STEP 10: Delete the user (revoke system access)
+2026-07-21 15:15:34.500 +10:00 info: STEP 11: Delete the employee from PIM
+2026-07-21 15:15:37.216 +10:00 info: STEP 12: Confirm the employee no longer appears in a PIM search
+2026-07-21 15:15:37.578 +10:00 info: PASS Employee lifecycle E2E (UI) complete

@@ -1,0 +1,1 @@
+all fruits: [ 'Apple $2', 'Banana $1', 'Cherry $5' ]

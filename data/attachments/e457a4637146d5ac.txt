@@ -1,8 +1,0 @@
-2026-07-21 01:29:43.422 +10:00 info: STEP 1: Log in as Admin
-2026-07-21 01:29:58.174 +10:00 info: STEP 2: Create employee "E2e Life1784561383416" (employeeId 561383416)
-2026-07-21 01:30:21.050 +10:00 info: STEP 3: Landed on the employee profile (identity captured)
-2026-07-21 01:30:21.883 +10:00 info: STEP 4: Verify the opened record shows the correct first name
-2026-07-21 01:30:22.702 +10:00 info: STEP 5: Search the PIM list for "E2e Life1784561383416"
-2026-07-21 01:30:27.868 +10:00 info: STEP 6: Open the record and rename firstName -> "E2eUpdated"
-2026-07-21 01:30:33.885 +10:00 info: STEP 7: Set job details (Job Title + Employment Status)
-2026-07-21 01:30:42.649 +10:00 info: STEP 8: Create an ESS user linked to the employee
