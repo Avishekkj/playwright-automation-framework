@@ -1,0 +1,11 @@
+2026-07-22 01:05:07.222 +10:00 info: STEP 1: Create an employee
+2026-07-22 01:05:07.489 +10:00 info: STEP 2: Create a user for the employee
+2026-07-22 01:05:07.489 +10:00 info:   -> [API] POST create user "term722247299"
+2026-07-22 01:05:08.004 +10:00 info: STEP 3: The user can authenticate + call a protected API (200)
+2026-07-22 01:05:09.644 +10:00 info: STEP 4: Offboard — revoke system access (delete user)
+2026-07-22 01:05:09.645 +10:00 info:   -> [API] DEL  user id=125
+2026-07-22 01:05:09.886 +10:00 info: STEP 5: Attempt authentication again — protected call is now denied
+2026-07-22 01:05:11.012 +10:00 info: STEP 6: Verify access is denied/restricted (got 401)
+2026-07-22 01:05:11.018 +10:00 info: STEP 9: Employee is still searchable while present
+2026-07-22 01:05:11.460 +10:00 info: STEP 10: Remove the employee and confirm they are excluded from the active list
+2026-07-22 01:05:11.957 +10:00 info: PASS Termination / offboarding E2E complete

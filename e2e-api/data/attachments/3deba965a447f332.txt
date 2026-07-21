@@ -1,3 +1,0 @@
-2026-07-22 00:29:20.106 +10:00 info: STEP 1: GET leave types
-2026-07-22 00:29:21.456 +10:00 info: STEP 2: GET leave requests
-2026-07-22 00:29:22.669 +10:00 info: PASS leave reference data reachable

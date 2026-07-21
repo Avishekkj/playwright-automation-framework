@@ -1,0 +1,4 @@
+2026-07-22 01:05:14.574 +10:00 info: STEP 1: create with an empty body (not allowed)
+2026-07-22 01:05:14.574 +10:00 info:   -> [API] POST create job category
+2026-07-22 01:05:14.857 +10:00 info: STEP 2: expect 422 (bad data)
+2026-07-22 01:05:14.857 +10:00 info: PASS missing name rejected

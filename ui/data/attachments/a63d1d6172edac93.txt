@@ -1,0 +1,12 @@
+2026-07-22 01:06:11.709 +10:00 info:   -> [UI] Login as "Admin"
+👉 menu items: 12
+third item: Leave
+last  item: Buzz
+👉 all labels: [
+  'Admin',       'PIM',
+  'Leave',       'Time',
+  'Recruitment', 'My Info',
+  'Performance', 'Dashboard',
+  'Directory',   'Maintenance',
+  'Claim',       'Buzz'
+]

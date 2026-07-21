@@ -1,0 +1,6 @@
+2026-07-22 01:07:25.443 +10:00 info:   -> [UI] Login as "Admin"
+✓ created employee: Auto Emp1784646443066
+✓ found employee in PIM
+✓ created admin user: autouser1784646443066
+✓ verified user in Admin
+✓ deleted user

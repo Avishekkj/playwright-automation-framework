@@ -1,9 +1,0 @@
-2026-07-22 00:29:15.773 +10:00 info: STEP 1: CREATE "QA Category 1784644155773" (expect 200)
-2026-07-22 00:29:15.773 +10:00 info:   -> [API] POST create job category
-2026-07-22 00:29:17.264 +10:00 info: STEP 2: READ it back (expect 200)
-2026-07-22 00:29:17.264 +10:00 info:   -> [API] GET  job category id=12
-2026-07-22 00:29:19.590 +10:00 info: STEP 3: UPDATE the name (PUT, expect 200)
-2026-07-22 00:29:19.590 +10:00 info:   -> [API] PUT  update job category id=12
-2026-07-22 00:29:20.696 +10:00 info: STEP 4: DELETE (cleanup, expect 200 + returns our id)
-2026-07-22 00:29:20.696 +10:00 info:   -> [API] DEL  job category id=12
-2026-07-22 00:29:22.090 +10:00 info: PASS full CRUD works

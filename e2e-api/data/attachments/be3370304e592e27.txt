@@ -1,0 +1,2 @@
+2026-07-22 01:05:11.983 +10:00 info: STEP 1: GET customers (time reference data)
+2026-07-22 01:05:12.225 +10:00 info: PASS time reference data reachable

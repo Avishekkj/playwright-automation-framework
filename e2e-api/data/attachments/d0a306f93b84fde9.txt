@@ -1,0 +1,2 @@
+2026-07-22 01:05:06.680 +10:00 info: STEP 1: GET attendance records
+2026-07-22 01:05:07.182 +10:00 info: PASS attendance records reachable

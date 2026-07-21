@@ -1,4 +1,0 @@
-2026-07-22 00:29:31.670 +10:00 info: STEP 1: create with an empty body (not allowed)
-2026-07-22 00:29:31.670 +10:00 info:   -> [API] POST create pay grade
-2026-07-22 00:29:32.671 +10:00 info: STEP 2: expect 422 (bad data)
-2026-07-22 00:29:32.672 +10:00 info: PASS missing name rejected

@@ -1,0 +1,4 @@
+2026-07-22 01:05:20.667 +10:00 info:   -> [API] POST create user "ess6320346"
+2026-07-22 01:05:23.011 +10:00 info: STEP 1: ESS user reads pim/employees
+2026-07-22 01:05:23.312 +10:00 info: PASS ESS allowed on PIM
+2026-07-22 01:05:23.314 +10:00 info:   -> [API] DEL  user id=133

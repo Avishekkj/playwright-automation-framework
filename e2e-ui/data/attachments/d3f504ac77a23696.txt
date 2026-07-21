@@ -1,0 +1,18 @@
+2026-07-22 01:06:37.715 +10:00 info: STEP 1: Log in as Admin
+2026-07-22 01:06:39.919 +10:00 info:   -> [UI] Login as "Admin"
+2026-07-22 01:06:41.650 +10:00 info: STEP 2: Create employee "Rbac U1784646397709"
+2026-07-22 01:06:49.542 +10:00 info: STEP 3: Create an ESS user for that employee
+2026-07-22 01:07:00.186 +10:00 info: STEP 4: Log in as the ESS user
+2026-07-22 01:07:00.738 +10:00 info:   -> [UI] Login as "bnd646397709"
+2026-07-22 01:07:02.042 +10:00 info: STEP 5: ESS can see "My Info" (permitted)
+2026-07-22 01:07:02.054 +10:00 info: STEP 6: ESS opens My Info → Personal Details (permitted)
+2026-07-22 01:07:04.041 +10:00 info: STEP 7: ESS attempts to reach Admin — the menu is not available
+2026-07-22 01:07:04.042 +10:00 info: STEP 8: Verify access is DENIED (no Admin menu item)
+2026-07-22 01:07:04.056 +10:00 info: STEP 9: Log back in as Admin
+2026-07-22 01:07:04.856 +10:00 info:   -> [UI] Login as "Admin"
+2026-07-22 01:07:06.719 +10:00 info: STEP 10: Admin can reach Admin (permitted)
+2026-07-22 01:07:08.636 +10:00 info: STEP 11: Disable the ESS user (Status → Disabled)
+2026-07-22 01:07:14.456 +10:00 info: STEP 12: Confirm the disabled user can no longer log in
+2026-07-22 01:07:15.023 +10:00 info:   -> [UI] Login as "bnd646397709"
+2026-07-22 01:07:16.191 +10:00 info: PASS RBAC permission boundary E2E (UI) complete
+2026-07-22 01:07:16.738 +10:00 info:   -> [UI] Login as "Admin"

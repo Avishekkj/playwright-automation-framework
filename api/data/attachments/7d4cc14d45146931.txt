@@ -1,4 +1,0 @@
-2026-07-22 00:29:13.203 +10:00 info: STEP 1: ask for the list of job categories
-2026-07-22 00:29:13.204 +10:00 info:   -> [API] GET  list job categorys
-2026-07-22 00:29:15.757 +10:00 info: STEP 2: expect 200 and a valid first item
-2026-07-22 00:29:15.759 +10:00 info: PASS list works

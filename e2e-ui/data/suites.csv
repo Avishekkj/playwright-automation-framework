@@ -1,4 +1,4 @@
 "DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
-"","59389","ESS is limited, Admin is not, and a disabled user cannot log in","chromium","2026-07-21","failed","2026-07-21","E2E [UI] — RBAC Permission Boundary","e2e/rbac-permission-boundary.ui.e2e.spec.ts","",""
-"","33079","hire an employee, verify, update, grant access, then offboard","chromium","2026-07-21","failed","2026-07-21","E2E [UI] — Employee Lifecycle","e2e/employee-lifecycle.ui.e2e.spec.ts","",""
-"","26645","E2E: add employee, make admin, verify, delete","chromium","2026-07-21","passed","2026-07-21","","e2e-employee.spec.ts","",""
+"","23738","E2E: add employee, make admin, verify, delete","chromium","2026-07-21","passed","2026-07-21","","e2e-employee.spec.ts","",""
+"","22931","hire an employee, verify, update, grant access, then offboard","chromium","2026-07-21","failed","2026-07-21","E2E [UI] — Employee Lifecycle","e2e/employee-lifecycle.ui.e2e.spec.ts","",""
+"","45350","ESS is limited, Admin is not, and a disabled user cannot log in","chromium","2026-07-21","passed","2026-07-21","E2E [UI] — RBAC Permission Boundary","e2e/rbac-permission-boundary.ui.e2e.spec.ts","",""

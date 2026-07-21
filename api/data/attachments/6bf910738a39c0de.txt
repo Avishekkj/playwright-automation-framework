@@ -1,9 +1,0 @@
-2026-07-22 00:29:03.332 +10:00 info: STEP 1: CREATE "QA Status 1784644143331" (expect 200)
-2026-07-22 00:29:03.332 +10:00 info:   -> [API] POST create employment status
-2026-07-22 00:29:04.262 +10:00 info: STEP 2: READ it back (expect 200)
-2026-07-22 00:29:04.262 +10:00 info:   -> [API] GET  employment status id=12
-2026-07-22 00:29:05.579 +10:00 info: STEP 3: UPDATE the name (PUT, expect 200)
-2026-07-22 00:29:05.579 +10:00 info:   -> [API] PUT  update employment status id=12
-2026-07-22 00:29:06.874 +10:00 info: STEP 4: DELETE (cleanup, expect 200 + returns our id)
-2026-07-22 00:29:06.874 +10:00 info:   -> [API] DEL  employment status id=12
-2026-07-22 00:29:08.858 +10:00 info: PASS full CRUD works

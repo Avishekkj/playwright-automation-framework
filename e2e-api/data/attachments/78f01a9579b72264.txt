@@ -1,0 +1,16 @@
+2026-07-22 01:05:06.640 +10:00 info: STEP 1: Authenticated as Admin (saved session)
+2026-07-22 01:05:06.641 +10:00 info: STEP 2: Create employee "E2e Life1784646306627" (employeeId 662756859)
+2026-07-22 01:05:07.145 +10:00 info: STEP 3: Captured empNumber = 324
+2026-07-22 01:05:07.146 +10:00 info: STEP 4: GET the employee by empNumber
+2026-07-22 01:05:07.389 +10:00 info: STEP 5: Search the list API by employeeId=662756859
+2026-07-22 01:05:07.641 +10:00 info: STEP 6: Update personal details (firstName -> "E2eUpdated")
+2026-07-22 01:05:08.075 +10:00 info: STEP 7: Add job details (job title, employment status, category)
+2026-07-22 01:05:08.333 +10:00 info: STEP 8: Create an ESS user linked to the employee
+2026-07-22 01:05:08.333 +10:00 info:   -> [API] POST create user "life662756859"
+2026-07-22 01:05:08.967 +10:00 info: STEP 9: Retrieve the user and verify it links back to our employee
+2026-07-22 01:05:08.968 +10:00 info:   -> [API] GET  user id=126
+2026-07-22 01:05:09.219 +10:00 info: STEP 10: Delete the user (revoke system access)
+2026-07-22 01:05:09.219 +10:00 info:   -> [API] DEL  user id=126
+2026-07-22 01:05:09.453 +10:00 info: STEP 11: Delete the employee
+2026-07-22 01:05:09.725 +10:00 info: STEP 12: Confirm the employee no longer appears in a search
+2026-07-22 01:05:09.989 +10:00 info: PASS Employee lifecycle E2E complete
