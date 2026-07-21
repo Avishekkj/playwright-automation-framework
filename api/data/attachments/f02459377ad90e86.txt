@@ -1,0 +1,4 @@
+2026-07-21 22:39:22.998 +10:00 info: STEP 1: ask for an id that cannot exist
+2026-07-21 22:39:22.998 +10:00 info:   -> [API] GET  work shift id=99999999
+2026-07-21 22:39:29.176 +10:00 info: STEP 2: expect 404 (not found)
+2026-07-21 22:39:29.176 +10:00 info: PASS missing resource returns 404

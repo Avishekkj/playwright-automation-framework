@@ -1,48 +1,41 @@
-2026-07-21 22:14:07.965 +10:00 [INFO] STEP 1: GET login page and extract the CSRF token
-2026-07-21 22:14:09.709 +10:00 [INFO] STEP 2: POST /auth/validate as "Admin" (password from secret vault)
-2026-07-21 22:14:20.259 +10:00 [INFO] STEP 3: Verify the session is authenticated (GET admin/users → 200)
-2026-07-21 22:14:22.277 +10:00 [INFO] STEP 4: Save storageState → .auth/zenith.json
-2026-07-21 22:14:22.282 +10:00 [INFO] PASS API login complete — session saved
-2026-07-21 22:14:23.091 +10:00 [INFO] STEP 1: Authenticated as Admin (saved session)
-2026-07-21 22:14:23.107 +10:00 [INFO] STEP 2: Create employee "E2e Life1784636063086" (employeeId 308986292)
-2026-07-21 22:14:23.117 +10:00 [INFO] STEP 1: GET attendance records
-2026-07-21 22:14:26.867 +10:00 [INFO] STEP 3: Captured empNumber = 208
-2026-07-21 22:14:26.869 +10:00 [INFO] STEP 4: GET the employee by empNumber
-2026-07-21 22:14:27.969 +10:00 [INFO] PASS attendance records reachable
-2026-07-21 22:14:28.016 +10:00 [INFO] STEP 1: Create an employee
-2026-07-21 22:14:31.566 +10:00 [INFO] STEP 2: Create a user for the employee
-2026-07-21 22:14:31.567 +10:00 [INFO]   -> [API] POST create user "term801692033"
-2026-07-21 22:14:32.161 +10:00 [INFO] STEP 5: Search the list API by employeeId=308986292
-2026-07-21 22:14:38.377 +10:00 [INFO] STEP 3: The user can authenticate + call a protected API (200)
-2026-07-21 22:14:39.281 +10:00 [INFO] STEP 6: Update personal details (firstName -> "E2eUpdated")
-2026-07-21 22:14:40.494 +10:00 [INFO] STEP 7: Add job details (job title, employment status, category)
-2026-07-21 22:14:42.460 +10:00 [INFO] STEP 8: Create an ESS user linked to the employee
-2026-07-21 22:14:42.461 +10:00 [INFO]   -> [API] POST create user "life308986292"
-2026-07-21 22:14:48.086 +10:00 [INFO] STEP 9: Retrieve the user and verify it links back to our employee
-2026-07-21 22:14:48.087 +10:00 [INFO]   -> [API] GET  user id=71
-2026-07-21 22:14:51.790 +10:00 [INFO] STEP 4: Offboard — revoke system access (delete user)
-2026-07-21 22:14:51.790 +10:00 [INFO]   -> [API] DEL  user id=68
-2026-07-21 22:14:51.885 +10:00 [INFO] STEP 10: Delete the user (revoke system access)
-2026-07-21 22:14:51.885 +10:00 [INFO]   -> [API] DEL  user id=71
-2026-07-21 22:14:53.729 +10:00 [INFO] STEP 1: GET leave types
-2026-07-21 22:14:55.063 +10:00 [INFO] STEP 5: Attempt authentication again — protected call is now denied
-2026-07-21 22:14:55.585 +10:00 [INFO] STEP 2: GET leave requests
-2026-07-21 22:14:58.072 +10:00 [INFO] PASS leave reference data reachable
-2026-07-21 22:14:58.122 +10:00 [INFO] STEP 1: GET customers (time reference data)
-2026-07-21 22:14:58.686 +10:00 [INFO] STEP 1: Authenticated as Admin
-2026-07-21 22:14:58.692 +10:00 [INFO] STEP 2: Create an employee
-2026-07-21 22:15:01.213 +10:00 [INFO] STEP 3: Create an ESS user for that employee
-2026-07-21 22:15:01.214 +10:00 [INFO]   -> [API] POST create user "bnd868463862"
-2026-07-21 22:15:02.487 +10:00 [INFO] PASS time reference data reachable
-2026-07-21 22:15:05.365 +10:00 [INFO] STEP 4: Authenticate as the ESS user
-2026-07-21 22:15:15.590 +10:00 [INFO] STEP 5: ESS retrieves the employee list (permitted)
-2026-07-21 22:15:19.063 +10:00 [INFO] STEP 6: ESS reads their own profile via PIM (permitted)
-2026-07-21 22:15:20.678 +10:00 [INFO] STEP 7: ESS attempts a restricted admin operation (admin/users)
-2026-07-21 22:15:22.772 +10:00 [INFO] STEP 8: Verify access is DENIED (403)
-2026-07-21 22:15:22.776 +10:00 [INFO] STEP 9: Authenticate as Admin (fixture)
-2026-07-21 22:15:22.776 +10:00 [INFO] STEP 10: Admin performs the same admin operation successfully (200)
-2026-07-21 22:15:22.777 +10:00 [INFO]   -> [API] GET  list users
-2026-07-21 22:15:24.597 +10:00 [INFO] STEP 11: Disable the ESS user (status: false)
-2026-07-21 22:15:24.598 +10:00 [INFO]   -> [API] PUT  update user id=72 (status=false)
-2026-07-21 22:15:28.679 +10:00 [INFO] STEP 13: Cleanup user + employee
-2026-07-21 22:15:28.680 +10:00 [INFO]   -> [API] DEL  user id=72
+2026-07-21 22:37:13.261 +10:00 [INFO] STEP 1: GET login page and extract the CSRF token
+2026-07-21 22:37:16.007 +10:00 [INFO] STEP 2: POST /auth/validate as "Admin" (password from secret vault)
+2026-07-21 22:37:22.000 +10:00 [INFO] STEP 3: Verify the session is authenticated (GET admin/users → 200)
+2026-07-21 22:37:24.600 +10:00 [INFO] STEP 4: Save storageState → .auth/zenith.json
+2026-07-21 22:37:24.607 +10:00 [INFO] PASS API login complete — session saved
+2026-07-21 22:37:25.506 +10:00 [INFO] STEP 1: GET attendance records
+2026-07-21 22:37:25.545 +10:00 [INFO] STEP 1: Authenticated as Admin (saved session)
+2026-07-21 22:37:25.554 +10:00 [INFO] STEP 2: Create employee "E2e Life1784637445543" (employeeId 554398201)
+2026-07-21 22:37:28.278 +10:00 [INFO] STEP 3: Captured empNumber = 337
+2026-07-21 22:37:28.280 +10:00 [INFO] STEP 4: GET the employee by empNumber
+2026-07-21 22:37:29.104 +10:00 [INFO] PASS attendance records reachable
+2026-07-21 22:37:29.155 +10:00 [INFO] STEP 1: Create an employee
+2026-07-21 22:37:30.797 +10:00 [INFO] STEP 2: Create a user for the employee
+2026-07-21 22:37:30.797 +10:00 [INFO]   -> [API] POST create user "term915523516"
+2026-07-21 22:37:32.098 +10:00 [INFO] STEP 5: Search the list API by employeeId=554398201
+2026-07-21 22:37:33.692 +10:00 [INFO] STEP 3: The user can authenticate + call a protected API (200)
+2026-07-21 22:37:35.065 +10:00 [INFO] STEP 6: Update personal details (firstName -> "E2eUpdated")
+2026-07-21 22:37:37.873 +10:00 [INFO] STEP 7: Add job details (job title, employment status, category)
+2026-07-21 22:37:41.597 +10:00 [INFO] STEP 8: Create an ESS user linked to the employee
+2026-07-21 22:37:41.598 +10:00 [INFO]   -> [API] POST create user "life554398201"
+2026-07-21 22:37:49.772 +10:00 [INFO] STEP 9: Retrieve the user and verify it links back to our employee
+2026-07-21 22:37:49.773 +10:00 [INFO]   -> [API] GET  user id=113
+2026-07-21 22:37:50.777 +10:00 [INFO] STEP 4: Offboard — revoke system access (delete user)
+2026-07-21 22:37:50.777 +10:00 [INFO]   -> [API] DEL  user id=111
+2026-07-21 22:37:52.571 +10:00 [INFO] STEP 10: Delete the user (revoke system access)
+2026-07-21 22:37:52.572 +10:00 [INFO]   -> [API] DEL  user id=113
+2026-07-21 22:37:53.878 +10:00 [INFO] STEP 5: Attempt authentication again — protected call is now denied
+2026-07-21 22:37:55.370 +10:00 [INFO] STEP 11: Delete the employee
+2026-07-21 22:37:56.206 +10:00 [INFO] STEP 1: GET leave types
+2026-07-21 22:37:59.804 +10:00 [INFO] STEP 2: GET leave requests
+2026-07-21 22:37:59.829 +10:00 [INFO] STEP 1: Authenticated as Admin
+2026-07-21 22:37:59.835 +10:00 [INFO] STEP 2: Create an employee
+2026-07-21 22:38:01.669 +10:00 [INFO] PASS leave reference data reachable
+2026-07-21 22:38:01.715 +10:00 [INFO] STEP 1: GET customers (time reference data)
+2026-07-21 22:38:03.485 +10:00 [INFO] STEP 3: Create an ESS user for that employee
+2026-07-21 22:38:03.486 +10:00 [INFO]   -> [API] POST create user "bnd982868224"
+2026-07-21 22:38:05.386 +10:00 [INFO] PASS time reference data reachable
+2026-07-21 22:38:10.474 +10:00 [INFO] STEP 4: Authenticate as the ESS user
+2026-07-21 22:38:22.261 +10:00 [INFO] STEP 5: ESS retrieves the employee list (permitted)
+2026-07-21 22:38:25.871 +10:00 [INFO] STEP 6: ESS reads their own profile via PIM (permitted)
+2026-07-21 22:38:28.777 +10:00 [INFO] STEP 7: ESS attempts a restricted admin operation (admin/users)

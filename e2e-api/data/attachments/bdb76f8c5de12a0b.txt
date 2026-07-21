@@ -1,7 +1,0 @@
-2026-07-21 22:14:28.016 +10:00 info: STEP 1: Create an employee
-2026-07-21 22:14:31.566 +10:00 info: STEP 2: Create a user for the employee
-2026-07-21 22:14:31.567 +10:00 info:   -> [API] POST create user "term801692033"
-2026-07-21 22:14:38.377 +10:00 info: STEP 3: The user can authenticate + call a protected API (200)
-2026-07-21 22:14:51.790 +10:00 info: STEP 4: Offboard — revoke system access (delete user)
-2026-07-21 22:14:51.791 +10:00 info:   -> [API] DEL  user id=68
-2026-07-21 22:14:55.063 +10:00 info: STEP 5: Attempt authentication again — protected call is now denied

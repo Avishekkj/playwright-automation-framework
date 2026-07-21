@@ -1,2 +1,0 @@
-2026-07-21 22:14:23.122 +10:00 info: STEP 1: GET attendance records
-2026-07-21 22:14:27.969 +10:00 info: PASS attendance records reachable

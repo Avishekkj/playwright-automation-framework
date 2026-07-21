@@ -1,9 +1,0 @@
-2026-07-21 22:15:01.392 +10:00 info: STEP 1: CREATE "QA Grade 1784636101391" (expect 200)
-2026-07-21 22:15:01.392 +10:00 info:   -> [API] POST create pay grade
-2026-07-21 22:15:04.186 +10:00 info: STEP 2: READ it back (expect 200)
-2026-07-21 22:15:04.186 +10:00 info:   -> [API] GET  pay grade id=6
-2026-07-21 22:15:06.651 +10:00 info: STEP 3: UPDATE the name (PUT, expect 200)
-2026-07-21 22:15:06.651 +10:00 info:   -> [API] PUT  update pay grade id=6
-2026-07-21 22:15:09.251 +10:00 info: STEP 4: DELETE (cleanup, expect 200 + returns our id)
-2026-07-21 22:15:09.251 +10:00 info:   -> [API] DEL  pay grade id=6
-2026-07-21 22:15:11.258 +10:00 info: PASS full CRUD works

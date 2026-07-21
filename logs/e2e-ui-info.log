@@ -1,9 +1,19 @@
-2026-07-21 22:14:31.448 +10:00 [INFO] STEP 1: Log in as Admin
-2026-07-21 22:14:48.972 +10:00 [INFO] STEP 2: Create employee "E2e Life1784636071447" (employeeId 636071447)
-2026-07-21 22:15:22.980 +10:00 [INFO] STEP 3: Landed on the employee profile (identity captured)
-2026-07-21 22:15:24.818 +10:00 [INFO] STEP 4: Verify the opened record shows the correct first name
-2026-07-21 22:15:28.640 +10:00 [INFO] STEP 5: Search the PIM list for "E2e Life1784636071447"
-2026-07-21 22:15:37.157 +10:00 [INFO] STEP 1: Log in as Admin
-2026-07-21 22:16:03.932 +10:00 [INFO] STEP 2: Create employee "E2e Life1784636137156" (employeeId 636137156)
-2026-07-21 22:16:42.928 +10:00 [INFO] STEP 1: Log in as Admin
-2026-07-21 22:17:00.534 +10:00 [INFO] STEP 2: Create employee "E2e Life1784636202927" (employeeId 636202927)
+2026-07-21 22:37:34.133 +10:00 [INFO] STEP 1: Log in as Admin
+2026-07-21 22:37:52.669 +10:00 [INFO] STEP 2: Create employee "E2e Life1784637454131" (employeeId 637454131)
+2026-07-21 22:38:33.186 +10:00 [INFO] STEP 1: Log in as Admin
+2026-07-21 22:38:54.096 +10:00 [INFO] STEP 2: Create employee "E2e Life1784637513184" (employeeId 637513184)
+2026-07-21 22:39:35.485 +10:00 [INFO] STEP 1: Log in as Admin
+2026-07-21 22:40:00.342 +10:00 [INFO] STEP 2: Create employee "E2e Life1784637575484" (employeeId 637575484)
+2026-07-21 22:40:37.425 +10:00 [INFO] STEP 1: Log in as Admin
+2026-07-21 22:41:02.402 +10:00 [INFO] STEP 2: Create employee "Rbac U1784637637424"
+2026-07-21 22:41:37.356 +10:00 [INFO] STEP 3: Create an ESS user for that employee
+2026-07-21 22:42:06.652 +10:00 [INFO] STEP 4: Log in as the ESS user
+2026-07-21 22:42:18.180 +10:00 [INFO] STEP 5: ESS can see "My Info" (permitted)
+2026-07-21 22:42:18.193 +10:00 [INFO] STEP 6: ESS opens My Info → Personal Details (permitted)
+2026-07-21 22:42:25.592 +10:00 [INFO] STEP 7: ESS attempts to reach Admin — the menu is not available
+2026-07-21 22:42:25.593 +10:00 [INFO] STEP 8: Verify access is DENIED (no Admin menu item)
+2026-07-21 22:42:25.598 +10:00 [INFO] STEP 9: Log back in as Admin
+2026-07-21 22:42:44.386 +10:00 [INFO] STEP 10: Admin can reach Admin (permitted)
+2026-07-21 22:42:54.329 +10:00 [INFO] STEP 11: Disable the ESS user (Status → Disabled)
+2026-07-21 22:43:14.570 +10:00 [INFO] STEP 12: Confirm the disabled user can no longer log in
+2026-07-21 22:43:26.423 +10:00 [INFO] PASS RBAC permission boundary E2E (UI) complete

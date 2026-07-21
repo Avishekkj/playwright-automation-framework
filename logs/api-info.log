@@ -1,121 +1,119 @@
-2026-07-21 22:14:08.148 +10:00 [INFO] STEP 1: GET login page and extract the CSRF token
-2026-07-21 22:14:11.775 +10:00 [INFO] STEP 2: POST /auth/validate as "Admin" (password from secret vault)
-2026-07-21 22:14:20.586 +10:00 [INFO] STEP 3: Verify the session is authenticated (GET admin/users → 200)
-2026-07-21 22:14:21.591 +10:00 [INFO] STEP 4: Save storageState → .auth/zenith.json
-2026-07-21 22:14:21.597 +10:00 [INFO] PASS API login complete — session saved
-2026-07-21 22:14:22.389 +10:00 [INFO] STEP 1: ask for the list of employment statuses
-2026-07-21 22:14:22.408 +10:00 [INFO]   -> [API] GET  list employment statuss
-2026-07-21 22:14:24.491 +10:00 [INFO] STEP 2: expect 200 and a valid first item
-2026-07-21 22:14:24.500 +10:00 [INFO] PASS list works
-2026-07-21 22:14:24.535 +10:00 [INFO] STEP 1: CREATE "QA Status 1784636064535" (expect 200)
-2026-07-21 22:14:24.535 +10:00 [INFO]   -> [API] POST create employment status
-2026-07-21 22:14:26.872 +10:00 [INFO] STEP 2: READ it back (expect 200)
-2026-07-21 22:14:26.873 +10:00 [INFO]   -> [API] GET  employment status id=7
-2026-07-21 22:14:28.664 +10:00 [INFO] STEP 3: UPDATE the name (PUT, expect 200)
-2026-07-21 22:14:28.664 +10:00 [INFO]   -> [API] PUT  update employment status id=7
-2026-07-21 22:14:32.959 +10:00 [INFO] STEP 4: DELETE (cleanup, expect 200 + returns our id)
-2026-07-21 22:14:32.959 +10:00 [INFO]   -> [API] DEL  employment status id=7
-2026-07-21 22:14:35.578 +10:00 [INFO] PASS full CRUD works
-2026-07-21 22:14:35.603 +10:00 [INFO] STEP 1: create with an empty body (not allowed)
-2026-07-21 22:14:35.603 +10:00 [INFO]   -> [API] POST create employment status
-2026-07-21 22:14:37.858 +10:00 [INFO] STEP 2: expect 422 (bad data)
-2026-07-21 22:14:37.859 +10:00 [INFO] PASS missing name rejected
-2026-07-21 22:14:37.879 +10:00 [INFO] STEP 1: ask for an id that cannot exist
-2026-07-21 22:14:37.879 +10:00 [INFO]   -> [API] GET  employment status id=99999999
-2026-07-21 22:14:40.354 +10:00 [INFO] STEP 2: expect 404 (not found)
-2026-07-21 22:14:40.355 +10:00 [INFO] PASS missing resource returns 404
-2026-07-21 22:14:40.381 +10:00 [INFO] STEP 1: ask for the list of job categories
-2026-07-21 22:14:40.382 +10:00 [INFO]   -> [API] GET  list job categorys
-2026-07-21 22:14:43.783 +10:00 [INFO] STEP 2: expect 200 and a valid first item
-2026-07-21 22:14:43.784 +10:00 [INFO] PASS list works
-2026-07-21 22:14:43.798 +10:00 [INFO] STEP 1: CREATE "QA Category 1784636083798" (expect 200)
-2026-07-21 22:14:43.798 +10:00 [INFO]   -> [API] POST create job category
-2026-07-21 22:14:47.476 +10:00 [INFO] STEP 2: READ it back (expect 200)
-2026-07-21 22:14:47.477 +10:00 [INFO]   -> [API] GET  job category id=12
-2026-07-21 22:14:50.160 +10:00 [INFO] STEP 3: UPDATE the name (PUT, expect 200)
-2026-07-21 22:14:50.161 +10:00 [INFO]   -> [API] PUT  update job category id=12
-2026-07-21 22:14:51.458 +10:00 [INFO] STEP 4: DELETE (cleanup, expect 200 + returns our id)
-2026-07-21 22:14:51.458 +10:00 [INFO]   -> [API] DEL  job category id=12
-2026-07-21 22:14:53.983 +10:00 [INFO] PASS full CRUD works
-2026-07-21 22:14:53.997 +10:00 [INFO] STEP 1: create with an empty body (not allowed)
-2026-07-21 22:14:53.997 +10:00 [INFO]   -> [API] POST create job category
-2026-07-21 22:14:55.589 +10:00 [INFO] STEP 2: expect 422 (bad data)
-2026-07-21 22:14:55.590 +10:00 [INFO] PASS missing name rejected
-2026-07-21 22:14:55.614 +10:00 [INFO] STEP 1: ask for an id that cannot exist
-2026-07-21 22:14:55.614 +10:00 [INFO]   -> [API] GET  job category id=99999999
-2026-07-21 22:14:57.290 +10:00 [INFO] STEP 2: expect 404 (not found)
-2026-07-21 22:14:57.291 +10:00 [INFO] PASS missing resource returns 404
-2026-07-21 22:14:57.326 +10:00 [INFO] STEP 1: ask for the list of pay grades
-2026-07-21 22:14:57.326 +10:00 [INFO]   -> [API] GET  list pay grades
-2026-07-21 22:15:01.351 +10:00 [INFO] STEP 2: expect 200 and a valid first item
-2026-07-21 22:15:01.353 +10:00 [INFO] PASS list works
-2026-07-21 22:15:01.391 +10:00 [INFO] STEP 1: CREATE "QA Grade 1784636101391" (expect 200)
-2026-07-21 22:15:01.392 +10:00 [INFO]   -> [API] POST create pay grade
-2026-07-21 22:15:04.185 +10:00 [INFO] STEP 2: READ it back (expect 200)
-2026-07-21 22:15:04.186 +10:00 [INFO]   -> [API] GET  pay grade id=6
-2026-07-21 22:15:06.651 +10:00 [INFO] STEP 3: UPDATE the name (PUT, expect 200)
-2026-07-21 22:15:06.651 +10:00 [INFO]   -> [API] PUT  update pay grade id=6
-2026-07-21 22:15:09.251 +10:00 [INFO] STEP 4: DELETE (cleanup, expect 200 + returns our id)
-2026-07-21 22:15:09.251 +10:00 [INFO]   -> [API] DEL  pay grade id=6
-2026-07-21 22:15:11.258 +10:00 [INFO] PASS full CRUD works
-2026-07-21 22:15:11.279 +10:00 [INFO] STEP 1: create with an empty body (not allowed)
-2026-07-21 22:15:11.280 +10:00 [INFO]   -> [API] POST create pay grade
-2026-07-21 22:15:13.486 +10:00 [INFO] STEP 2: expect 422 (bad data)
-2026-07-21 22:15:13.487 +10:00 [INFO] PASS missing name rejected
-2026-07-21 22:15:13.503 +10:00 [INFO] STEP 1: ask for an id that cannot exist
-2026-07-21 22:15:13.503 +10:00 [INFO]   -> [API] GET  pay grade id=99999999
-2026-07-21 22:15:15.688 +10:00 [INFO] STEP 2: expect 404 (not found)
-2026-07-21 22:15:15.689 +10:00 [INFO] PASS missing resource returns 404
-2026-07-21 22:15:15.712 +10:00 [INFO] STEP 1: ask for the list of users
-2026-07-21 22:15:15.712 +10:00 [INFO]   -> [API] GET  list users
-2026-07-21 22:15:16.661 +10:00 [INFO]   -> [API] POST create user "ess6113401"
-2026-07-21 22:15:20.957 +10:00 [INFO] STEP 2: expect 200 and a valid first user
-2026-07-21 22:15:20.960 +10:00 [INFO] PASS list works
-2026-07-21 22:15:20.981 +10:00 [INFO] STEP 1: create an employee (a user must belong to one)
-2026-07-21 22:15:22.872 +10:00 [INFO] STEP 2: create an ESS user for that employee (expect 200)
-2026-07-21 22:15:22.872 +10:00 [INFO]   -> [API] POST create user "usr6120981"
-2026-07-21 22:15:26.152 +10:00 [INFO] STEP 3: read the user back (expect 200)
-2026-07-21 22:15:26.152 +10:00 [INFO]   -> [API] GET  user id=75
-2026-07-21 22:15:28.298 +10:00 [INFO] STEP 4: delete the user (cleanup, expect 200)
-2026-07-21 22:15:28.299 +10:00 [INFO]   -> [API] DEL  user id=75
-2026-07-21 22:15:29.076 +10:00 [INFO] STEP 1: ESS user tries to read admin/users
-2026-07-21 22:15:29.669 +10:00 [INFO] delete the employee too (cleanup)
-2026-07-21 22:15:30.067 +10:00 [INFO] STEP 2: ESS user tries to read admin/job-titles
-2026-07-21 22:15:31.376 +10:00 [INFO] PASS user CRUD works
-2026-07-21 22:15:31.420 +10:00 [INFO] STEP 1: create a user with no data (not allowed)
-2026-07-21 22:15:31.420 +10:00 [INFO]   -> [API] POST create user "undefined"
-2026-07-21 22:15:32.862 +10:00 [INFO] STEP 2: expect 422 (bad data)
-2026-07-21 22:15:32.863 +10:00 [INFO] PASS missing fields rejected
-2026-07-21 22:15:32.892 +10:00 [INFO] STEP 1: ask for the list of work shifts
-2026-07-21 22:15:32.892 +10:00 [INFO]   -> [API] GET  list work shifts
-2026-07-21 22:15:32.960 +10:00 [INFO] PASS ESS correctly blocked from admin endpoints
-2026-07-21 22:15:32.963 +10:00 [INFO]   -> [API] DEL  user id=74
-2026-07-21 22:15:34.554 +10:00 [INFO] STEP 2: expect 200 and a valid first item
-2026-07-21 22:15:34.556 +10:00 [INFO] PASS list works
-2026-07-21 22:15:34.589 +10:00 [INFO] STEP 1: CREATE "QA Shift 1784636134589" with times + hoursPerDay (expect 200)
-2026-07-21 22:15:34.590 +10:00 [INFO]   -> [API] POST create work shift
-2026-07-21 22:15:36.976 +10:00 [INFO] STEP 2: READ it back (expect 200)
-2026-07-21 22:15:36.976 +10:00 [INFO]   -> [API] GET  work shift id=3
-2026-07-21 22:15:40.677 +10:00 [INFO] STEP 3: UPDATE the name (PUT, expect 200)
-2026-07-21 22:15:40.677 +10:00 [INFO]   -> [API] PUT  update work shift id=3
-2026-07-21 22:15:42.172 +10:00 [INFO]   -> [API] POST create user "ess6138102"
-2026-07-21 22:15:45.256 +10:00 [INFO] STEP 4: DELETE (cleanup, expect 200 + returns our id)
-2026-07-21 22:15:45.256 +10:00 [INFO]   -> [API] DEL  work shift id=3
-2026-07-21 22:15:50.352 +10:00 [INFO] PASS full CRUD works
-2026-07-21 22:15:50.369 +10:00 [INFO] STEP 1: create a shift but leave out hoursPerDay (a required field)
-2026-07-21 22:15:50.369 +10:00 [INFO]   -> [API] POST create work shift
-2026-07-21 22:15:53.281 +10:00 [INFO] STEP 2: expect 422 (bad data)
-2026-07-21 22:15:53.282 +10:00 [INFO] PASS missing required field rejected
-2026-07-21 22:15:53.297 +10:00 [INFO] STEP 1: send a totally empty body (the app cannot handle it)
-2026-07-21 22:15:53.298 +10:00 [INFO]   -> [API] POST create work shift
-2026-07-21 22:15:56.362 +10:00 [INFO] STEP 2: the server returns 500 — we assert we get that, not a crash on our side
-2026-07-21 22:15:56.364 +10:00 [INFO] PASS server 5xx handled gracefully by the test
-2026-07-21 22:15:56.377 +10:00 [INFO] STEP 1: ask for an id that cannot exist
-2026-07-21 22:15:56.377 +10:00 [INFO]   -> [API] GET  work shift id=99999999
-2026-07-21 22:16:00.777 +10:00 [INFO] STEP 2: expect 404 (not found)
-2026-07-21 22:16:00.779 +10:00 [INFO] PASS missing resource returns 404
-2026-07-21 22:16:04.450 +10:00 [INFO] STEP 1: ESS user reads pim/employees
-2026-07-21 22:16:08.109 +10:00 [INFO]   -> [API] DEL  user id=78
-2026-07-21 22:16:14.493 +10:00 [INFO] STEP 1: Admin lists users
-2026-07-21 22:16:14.494 +10:00 [INFO]   -> [API] GET  list users
-2026-07-21 22:16:16.860 +10:00 [INFO] PASS Admin allowed on admin endpoints
+2026-07-21 22:37:12.323 +10:00 [INFO] STEP 1: GET login page and extract the CSRF token
+2026-07-21 22:37:15.273 +10:00 [INFO] STEP 2: POST /auth/validate as "Admin" (password from secret vault)
+2026-07-21 22:37:23.259 +10:00 [INFO] STEP 3: Verify the session is authenticated (GET admin/users → 200)
+2026-07-21 22:37:25.063 +10:00 [INFO] STEP 4: Save storageState → .auth/zenith.json
+2026-07-21 22:37:25.070 +10:00 [INFO] PASS API login complete — session saved
+2026-07-21 22:37:25.861 +10:00 [INFO] STEP 1: ask for the list of employment statuses
+2026-07-21 22:37:25.875 +10:00 [INFO]   -> [API] GET  list employment statuss
+2026-07-21 22:37:28.385 +10:00 [INFO] STEP 2: expect 200 and a valid first item
+2026-07-21 22:37:28.399 +10:00 [INFO] PASS list works
+2026-07-21 22:37:28.437 +10:00 [INFO] STEP 1: CREATE "QA Status 1784637448437" (expect 200)
+2026-07-21 22:37:28.437 +10:00 [INFO]   -> [API] POST create employment status
+2026-07-21 22:37:32.192 +10:00 [INFO] STEP 2: READ it back (expect 200)
+2026-07-21 22:37:32.192 +10:00 [INFO]   -> [API] GET  employment status id=10
+2026-07-21 22:37:34.489 +10:00 [INFO] STEP 3: UPDATE the name (PUT, expect 200)
+2026-07-21 22:37:34.489 +10:00 [INFO]   -> [API] PUT  update employment status id=10
+2026-07-21 22:37:36.473 +10:00 [INFO] STEP 4: DELETE (cleanup, expect 200 + returns our id)
+2026-07-21 22:37:36.473 +10:00 [INFO]   -> [API] DEL  employment status id=10
+2026-07-21 22:37:38.494 +10:00 [INFO] PASS full CRUD works
+2026-07-21 22:37:38.518 +10:00 [INFO] STEP 1: create with an empty body (not allowed)
+2026-07-21 22:37:38.518 +10:00 [INFO]   -> [API] POST create employment status
+2026-07-21 22:37:41.795 +10:00 [INFO] STEP 2: expect 422 (bad data)
+2026-07-21 22:37:41.796 +10:00 [INFO] PASS missing name rejected
+2026-07-21 22:37:41.840 +10:00 [INFO] STEP 1: ask for an id that cannot exist
+2026-07-21 22:37:41.841 +10:00 [INFO]   -> [API] GET  employment status id=99999999
+2026-07-21 22:37:43.879 +10:00 [INFO] STEP 2: expect 404 (not found)
+2026-07-21 22:37:43.880 +10:00 [INFO] PASS missing resource returns 404
+2026-07-21 22:37:43.907 +10:00 [INFO] STEP 1: ask for the list of job categories
+2026-07-21 22:37:43.908 +10:00 [INFO]   -> [API] GET  list job categorys
+2026-07-21 22:37:48.557 +10:00 [INFO] STEP 2: expect 200 and a valid first item
+2026-07-21 22:37:48.559 +10:00 [INFO] PASS list works
+2026-07-21 22:37:48.578 +10:00 [INFO] STEP 1: CREATE "QA Category 1784637468577" (expect 200)
+2026-07-21 22:37:48.578 +10:00 [INFO]   -> [API] POST create job category
+2026-07-21 22:37:51.465 +10:00 [INFO] STEP 2: READ it back (expect 200)
+2026-07-21 22:37:51.466 +10:00 [INFO]   -> [API] GET  job category id=16
+2026-07-21 22:37:54.764 +10:00 [INFO] STEP 3: UPDATE the name (PUT, expect 200)
+2026-07-21 22:37:54.764 +10:00 [INFO]   -> [API] PUT  update job category id=16
+2026-07-21 22:37:58.092 +10:00 [INFO] STEP 4: DELETE (cleanup, expect 200 + returns our id)
+2026-07-21 22:37:58.092 +10:00 [INFO]   -> [API] DEL  job category id=16
+2026-07-21 22:37:59.470 +10:00 [INFO] PASS full CRUD works
+2026-07-21 22:37:59.485 +10:00 [INFO] STEP 1: create with an empty body (not allowed)
+2026-07-21 22:37:59.486 +10:00 [INFO]   -> [API] POST create job category
+2026-07-21 22:38:02.458 +10:00 [INFO] STEP 2: expect 422 (bad data)
+2026-07-21 22:38:02.459 +10:00 [INFO] PASS missing name rejected
+2026-07-21 22:38:02.472 +10:00 [INFO] STEP 1: ask for an id that cannot exist
+2026-07-21 22:38:02.473 +10:00 [INFO]   -> [API] GET  job category id=99999999
+2026-07-21 22:38:08.073 +10:00 [INFO] STEP 2: expect 404 (not found)
+2026-07-21 22:38:08.074 +10:00 [INFO] PASS missing resource returns 404
+2026-07-21 22:38:08.099 +10:00 [INFO] STEP 1: ask for the list of pay grades
+2026-07-21 22:38:08.100 +10:00 [INFO]   -> [API] GET  list pay grades
+2026-07-21 22:38:10.882 +10:00 [INFO] STEP 2: expect 200 and a valid first item
+2026-07-21 22:38:10.883 +10:00 [INFO] PASS list works
+2026-07-21 22:38:10.896 +10:00 [INFO] STEP 1: CREATE "QA Grade 1784637490896" (expect 200)
+2026-07-21 22:38:10.896 +10:00 [INFO]   -> [API] POST create pay grade
+2026-07-21 22:38:13.866 +10:00 [INFO] STEP 2: READ it back (expect 200)
+2026-07-21 22:38:13.866 +10:00 [INFO]   -> [API] GET  pay grade id=8
+2026-07-21 22:38:15.585 +10:00 [INFO] STEP 3: UPDATE the name (PUT, expect 200)
+2026-07-21 22:38:15.585 +10:00 [INFO]   -> [API] PUT  update pay grade id=8
+2026-07-21 22:38:17.790 +10:00 [INFO] STEP 4: DELETE (cleanup, expect 200 + returns our id)
+2026-07-21 22:38:17.790 +10:00 [INFO]   -> [API] DEL  pay grade id=8
+2026-07-21 22:38:20.676 +10:00 [INFO] PASS full CRUD works
+2026-07-21 22:38:20.688 +10:00 [INFO] STEP 1: create with an empty body (not allowed)
+2026-07-21 22:38:20.689 +10:00 [INFO]   -> [API] POST create pay grade
+2026-07-21 22:38:22.969 +10:00 [INFO] STEP 2: expect 422 (bad data)
+2026-07-21 22:38:22.970 +10:00 [INFO] PASS missing name rejected
+2026-07-21 22:38:22.987 +10:00 [INFO] STEP 1: ask for an id that cannot exist
+2026-07-21 22:38:22.987 +10:00 [INFO]   -> [API] GET  pay grade id=99999999
+2026-07-21 22:38:24.964 +10:00 [INFO] STEP 2: expect 404 (not found)
+2026-07-21 22:38:24.965 +10:00 [INFO] PASS missing resource returns 404
+2026-07-21 22:38:24.986 +10:00 [INFO] STEP 1: ask for the list of users
+2026-07-21 22:38:24.986 +10:00 [INFO]   -> [API] GET  list users
+2026-07-21 22:38:26.176 +10:00 [INFO]   -> [API] POST create user "ess7502999"
+2026-07-21 22:38:27.781 +10:00 [INFO] STEP 2: expect 200 and a valid first user
+2026-07-21 22:38:27.782 +10:00 [INFO] PASS list works
+2026-07-21 22:38:27.796 +10:00 [INFO] STEP 1: create an employee (a user must belong to one)
+2026-07-21 22:38:31.472 +10:00 [INFO] STEP 2: create an ESS user for that employee (expect 200)
+2026-07-21 22:38:31.473 +10:00 [INFO]   -> [API] POST create user "usr7507796"
+2026-07-21 22:38:37.362 +10:00 [INFO] STEP 3: read the user back (expect 200)
+2026-07-21 22:38:37.363 +10:00 [INFO]   -> [API] GET  user id=118
+2026-07-21 22:38:40.991 +10:00 [INFO] STEP 4: delete the user (cleanup, expect 200)
+2026-07-21 22:38:40.991 +10:00 [INFO]   -> [API] DEL  user id=118
+2026-07-21 22:38:44.894 +10:00 [INFO] STEP 1: ESS user tries to read admin/users
+2026-07-21 22:38:45.082 +10:00 [INFO] delete the employee too (cleanup)
+2026-07-21 22:38:46.882 +10:00 [INFO] STEP 2: ESS user tries to read admin/job-titles
+2026-07-21 22:38:48.679 +10:00 [INFO] PASS user CRUD works
+2026-07-21 22:38:48.693 +10:00 [INFO] STEP 1: create a user with no data (not allowed)
+2026-07-21 22:38:48.694 +10:00 [INFO]   -> [API] POST create user "undefined"
+2026-07-21 22:38:50.278 +10:00 [INFO] PASS ESS correctly blocked from admin endpoints
+2026-07-21 22:38:50.282 +10:00 [INFO]   -> [API] DEL  user id=116
+2026-07-21 22:38:53.975 +10:00 [INFO] STEP 2: expect 422 (bad data)
+2026-07-21 22:38:53.975 +10:00 [INFO] PASS missing fields rejected
+2026-07-21 22:38:54.001 +10:00 [INFO] STEP 1: ask for the list of work shifts
+2026-07-21 22:38:54.002 +10:00 [INFO]   -> [API] GET  list work shifts
+2026-07-21 22:38:58.481 +10:00 [INFO] STEP 2: expect 200 and a valid first item
+2026-07-21 22:38:58.483 +10:00 [INFO] PASS list works
+2026-07-21 22:38:58.498 +10:00 [INFO] STEP 1: CREATE "QA Shift 1784637538498" with times + hoursPerDay (expect 200)
+2026-07-21 22:38:58.498 +10:00 [INFO]   -> [API] POST create work shift
+2026-07-21 22:39:00.960 +10:00 [INFO] STEP 2: READ it back (expect 200)
+2026-07-21 22:39:00.961 +10:00 [INFO]   -> [API] GET  work shift id=6
+2026-07-21 22:39:03.584 +10:00 [INFO] STEP 3: UPDATE the name (PUT, expect 200)
+2026-07-21 22:39:03.585 +10:00 [INFO]   -> [API] PUT  update work shift id=6
+2026-07-21 22:39:04.487 +10:00 [INFO]   -> [API] POST create user "ess7539977"
+2026-07-21 22:39:07.085 +10:00 [INFO] STEP 4: DELETE (cleanup, expect 200 + returns our id)
+2026-07-21 22:39:07.085 +10:00 [INFO]   -> [API] DEL  work shift id=6
+2026-07-21 22:39:14.683 +10:00 [INFO] PASS full CRUD works
+2026-07-21 22:39:14.702 +10:00 [INFO] STEP 1: create a shift but leave out hoursPerDay (a required field)
+2026-07-21 22:39:14.702 +10:00 [INFO]   -> [API] POST create work shift
+2026-07-21 22:39:18.379 +10:00 [INFO] STEP 2: expect 422 (bad data)
+2026-07-21 22:39:18.380 +10:00 [INFO] PASS missing required field rejected
+2026-07-21 22:39:18.394 +10:00 [INFO] STEP 1: send a totally empty body (the app cannot handle it)
+2026-07-21 22:39:18.394 +10:00 [INFO]   -> [API] POST create work shift
+2026-07-21 22:39:22.982 +10:00 [INFO] STEP 2: the server returns 500 — we assert we get that, not a crash on our side
+2026-07-21 22:39:22.984 +10:00 [INFO] PASS server 5xx handled gracefully by the test
+2026-07-21 22:39:22.997 +10:00 [INFO] STEP 1: ask for an id that cannot exist
+2026-07-21 22:39:22.998 +10:00 [INFO]   -> [API] GET  work shift id=99999999
+2026-07-21 22:39:29.176 +10:00 [INFO] STEP 2: expect 404 (not found)
+2026-07-21 22:39:29.176 +10:00 [INFO] PASS missing resource returns 404
+2026-07-21 22:39:30.013 +10:00 [INFO] STEP 1: Admin lists users
+2026-07-21 22:39:30.013 +10:00 [INFO]   -> [API] GET  list users
+2026-07-21 22:39:31.365 +10:00 [INFO] PASS Admin allowed on admin endpoints

@@ -1,0 +1,5 @@
+2026-07-21 22:37:13.265 +10:00 info: STEP 1: GET login page and extract the CSRF token
+2026-07-21 22:37:16.007 +10:00 info: STEP 2: POST /auth/validate as "Admin" (password from secret vault)
+2026-07-21 22:37:22.001 +10:00 info: STEP 3: Verify the session is authenticated (GET admin/users → 200)
+2026-07-21 22:37:24.600 +10:00 info: STEP 4: Save storageState → .auth/zenith.json
+2026-07-21 22:37:24.607 +10:00 info: PASS API login complete — session saved

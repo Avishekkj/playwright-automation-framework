@@ -1,0 +1,8 @@
+2026-07-21 22:37:59.834 +10:00 info: STEP 1: Authenticated as Admin
+2026-07-21 22:37:59.835 +10:00 info: STEP 2: Create an employee
+2026-07-21 22:38:03.486 +10:00 info: STEP 3: Create an ESS user for that employee
+2026-07-21 22:38:03.486 +10:00 info:   -> [API] POST create user "bnd982868224"
+2026-07-21 22:38:10.474 +10:00 info: STEP 4: Authenticate as the ESS user
+2026-07-21 22:38:22.261 +10:00 info: STEP 5: ESS retrieves the employee list (permitted)
+2026-07-21 22:38:25.871 +10:00 info: STEP 6: ESS reads their own profile via PIM (permitted)
+2026-07-21 22:38:28.778 +10:00 info: STEP 7: ESS attempts a restricted admin operation (admin/users)

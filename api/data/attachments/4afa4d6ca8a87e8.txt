@@ -1,4 +1,0 @@
-2026-07-21 22:14:57.326 +10:00 info: STEP 1: ask for the list of pay grades
-2026-07-21 22:14:57.326 +10:00 info:   -> [API] GET  list pay grades
-2026-07-21 22:15:01.351 +10:00 info: STEP 2: expect 200 and a valid first item
-2026-07-21 22:15:01.353 +10:00 info: PASS list works

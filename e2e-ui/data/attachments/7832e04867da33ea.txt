@@ -1,2 +1,0 @@
-2026-07-21 22:16:42.935 +10:00 info: STEP 1: Log in as Admin
-2026-07-21 22:17:00.534 +10:00 info: STEP 2: Create employee "E2e Life1784636202927" (employeeId 636202927)
