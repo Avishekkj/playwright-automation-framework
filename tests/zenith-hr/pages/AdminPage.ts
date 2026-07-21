@@ -38,6 +38,12 @@ export class AdminPage {
     await this.searchButton.click();
   }
 
+  // open the edit form for the first result row (click its pencil icon)
+  async editFirstResult() {
+    await this.resultRows.first().locator('button:has(.bi-pencil-fill)').click();
+    await expect(this.page).toHaveURL(/saveSystemUser/);
+  }
+
   // delete the first result row: click its trash icon, then confirm the dialog
   async deleteFirstResult()  {
   // click the delete BUTTON on the first row, not the raw <i> icon

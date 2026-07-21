@@ -60,4 +60,11 @@ export class AdminAddUserPage {
     await this.saveButton.click();
     await expect(this.page).toHaveURL(/viewSystemUsers/);     // back to the list
   }
+
+  // on the EDIT user form: change the Status ('Enabled' | 'Disabled') and save.
+  async updateStatus(status: string) {
+    await this.selectDropdown('Status', status);
+    await this.saveButton.click();
+    await expect(this.page).toHaveURL(/viewSystemUsers/);     // back to the list
+  }
 }
