@@ -1,0 +1,16 @@
+2026-07-21 22:14:58.692 +10:00 info: STEP 1: Authenticated as Admin
+2026-07-21 22:14:58.693 +10:00 info: STEP 2: Create an employee
+2026-07-21 22:15:01.213 +10:00 info: STEP 3: Create an ESS user for that employee
+2026-07-21 22:15:01.214 +10:00 info:   -> [API] POST create user "bnd868463862"
+2026-07-21 22:15:05.366 +10:00 info: STEP 4: Authenticate as the ESS user
+2026-07-21 22:15:15.591 +10:00 info: STEP 5: ESS retrieves the employee list (permitted)
+2026-07-21 22:15:19.064 +10:00 info: STEP 6: ESS reads their own profile via PIM (permitted)
+2026-07-21 22:15:20.678 +10:00 info: STEP 7: ESS attempts a restricted admin operation (admin/users)
+2026-07-21 22:15:22.772 +10:00 info: STEP 8: Verify access is DENIED (403)
+2026-07-21 22:15:22.776 +10:00 info: STEP 9: Authenticate as Admin (fixture)
+2026-07-21 22:15:22.777 +10:00 info: STEP 10: Admin performs the same admin operation successfully (200)
+2026-07-21 22:15:22.777 +10:00 info:   -> [API] GET  list users
+2026-07-21 22:15:24.598 +10:00 info: STEP 11: Disable the ESS user (status: false)
+2026-07-21 22:15:24.598 +10:00 info:   -> [API] PUT  update user id=72 (status=false)
+2026-07-21 22:15:28.679 +10:00 info: STEP 13: Cleanup user + employee
+2026-07-21 22:15:28.680 +10:00 info:   -> [API] DEL  user id=72

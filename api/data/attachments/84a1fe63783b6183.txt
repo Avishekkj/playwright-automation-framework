@@ -1,0 +1,4 @@
+STEP 1: ask for a job title id that cannot exist
+   → [API] GET  job title id=99999999
+STEP 2: the app should say 404 (not found)
+✅ DONE: missing resource correctly returns 404

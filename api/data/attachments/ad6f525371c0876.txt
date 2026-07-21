@@ -1,0 +1,4 @@
+2026-07-21 22:15:53.298 +10:00 info: STEP 1: send a totally empty body (the app cannot handle it)
+2026-07-21 22:15:53.298 +10:00 info:   -> [API] POST create work shift
+2026-07-21 22:15:56.363 +10:00 info: STEP 2: the server returns 500 — we assert we get that, not a crash on our side
+2026-07-21 22:15:56.364 +10:00 info: PASS server 5xx handled gracefully by the test

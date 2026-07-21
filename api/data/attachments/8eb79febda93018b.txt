@@ -1,0 +1,5 @@
+STEP 1: ask the app for the list of job titles
+   → [API] GET  list of job titles
+STEP 2: the app should answer 200 (OK)
+STEP 3: the first job title should match our expected shape
+✅ DONE: list works

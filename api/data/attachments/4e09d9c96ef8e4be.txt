@@ -1,0 +1,9 @@
+2026-07-21 22:15:20.981 +10:00 info: STEP 1: create an employee (a user must belong to one)
+2026-07-21 22:15:22.872 +10:00 info: STEP 2: create an ESS user for that employee (expect 200)
+2026-07-21 22:15:22.872 +10:00 info:   -> [API] POST create user "usr6120981"
+2026-07-21 22:15:26.152 +10:00 info: STEP 3: read the user back (expect 200)
+2026-07-21 22:15:26.152 +10:00 info:   -> [API] GET  user id=75
+2026-07-21 22:15:28.299 +10:00 info: STEP 4: delete the user (cleanup, expect 200)
+2026-07-21 22:15:28.299 +10:00 info:   -> [API] DEL  user id=75
+2026-07-21 22:15:29.669 +10:00 info: delete the employee too (cleanup)
+2026-07-21 22:15:31.376 +10:00 info: PASS user CRUD works

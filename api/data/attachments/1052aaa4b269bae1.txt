@@ -1,0 +1,5 @@
+STEP 1: build a caller with NO login session
+STEP 2: try to list job titles without being logged in
+   → [API] GET  list of job titles
+STEP 3: the app should say 401 (who are you?)
+✅ DONE: unauthenticated request correctly blocked

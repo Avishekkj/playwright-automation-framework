@@ -1,0 +1,4 @@
+2026-07-21 22:15:13.503 +10:00 info: STEP 1: ask for an id that cannot exist
+2026-07-21 22:15:13.503 +10:00 info:   -> [API] GET  pay grade id=99999999
+2026-07-21 22:15:15.688 +10:00 info: STEP 2: expect 404 (not found)
+2026-07-21 22:15:15.689 +10:00 info: PASS missing resource returns 404

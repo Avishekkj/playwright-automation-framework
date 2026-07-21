@@ -1,0 +1,4 @@
+2026-07-21 22:15:50.369 +10:00 info: STEP 1: create a shift but leave out hoursPerDay (a required field)
+2026-07-21 22:15:50.370 +10:00 info:   -> [API] POST create work shift
+2026-07-21 22:15:53.281 +10:00 info: STEP 2: expect 422 (bad data)
+2026-07-21 22:15:53.282 +10:00 info: PASS missing required field rejected

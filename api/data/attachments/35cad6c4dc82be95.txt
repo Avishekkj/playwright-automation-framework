@@ -1,0 +1,9 @@
+2026-07-21 22:15:34.590 +10:00 info: STEP 1: CREATE "QA Shift 1784636134589" with times + hoursPerDay (expect 200)
+2026-07-21 22:15:34.590 +10:00 info:   -> [API] POST create work shift
+2026-07-21 22:15:36.976 +10:00 info: STEP 2: READ it back (expect 200)
+2026-07-21 22:15:36.976 +10:00 info:   -> [API] GET  work shift id=3
+2026-07-21 22:15:40.677 +10:00 info: STEP 3: UPDATE the name (PUT, expect 200)
+2026-07-21 22:15:40.677 +10:00 info:   -> [API] PUT  update work shift id=3
+2026-07-21 22:15:45.256 +10:00 info: STEP 4: DELETE (cleanup, expect 200 + returns our id)
+2026-07-21 22:15:45.256 +10:00 info:   -> [API] DEL  work shift id=3
+2026-07-21 22:15:50.352 +10:00 info: PASS full CRUD works

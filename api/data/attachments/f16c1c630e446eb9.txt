@@ -1,0 +1,4 @@
+STEP 1: try to create a job title with NO title (not allowed)
+   → [API] POST create job title "(no title)"
+STEP 2: the app should reject it with 422 (bad data)
+✅ DONE: missing title correctly rejected

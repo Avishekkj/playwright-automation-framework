@@ -1,0 +1,3 @@
+2026-07-21 22:16:14.493 +10:00 info: STEP 1: Admin lists users
+2026-07-21 22:16:14.494 +10:00 info:   -> [API] GET  list users
+2026-07-21 22:16:16.860 +10:00 info: PASS Admin allowed on admin endpoints
