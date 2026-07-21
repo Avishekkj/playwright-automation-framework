@@ -11,6 +11,7 @@
 import { test, expect } from '@playwright/test';
 import { PageManager } from '../PageManager';
 import { log } from '../utils/logger';
+import { ADMIN_USERNAME, ADMIN_PASSWORD } from '../../../src/config/credentials';
 
 test.describe('E2E [UI] — Employee Lifecycle', () => {
   test('hire an employee, verify, update, grant access, then offboard',
@@ -30,7 +31,7 @@ test.describe('E2E [UI] — Employee Lifecycle', () => {
     // 1) Authenticate as Admin
     log.step(1, 'Log in as Admin');
     await app.loginPage.open();
-    await app.loginPage.login('Admin', 'admin123');
+    await app.loginPage.login(ADMIN_USERNAME, ADMIN_PASSWORD);
     await app.dashboardPage.expectLoaded();
 
     // 2) Create employee (PIM → Add Employee)

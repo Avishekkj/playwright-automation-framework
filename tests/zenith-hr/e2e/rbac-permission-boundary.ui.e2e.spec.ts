@@ -16,6 +16,7 @@
 import { test, expect, type Page } from '@playwright/test';
 import { PageManager } from '../PageManager';
 import { log } from '../utils/logger';
+import { ADMIN_USERNAME, ADMIN_PASSWORD } from '../../../src/config/credentials';
 
 // switch to a given user deterministically: drop the session, then log in fresh
 async function loginAs(page: Page, app: PageManager, user: string, pass: string) {
@@ -32,7 +33,7 @@ test.describe('E2E [UI] — RBAC Permission Boundary', () => {
     if (!created.username && !created.last) return;
     test.setTimeout(180_000); // cleanup gets its own budget (login + search + delete)
     const app = new PageManager(page);
-    await loginAs(page, app, 'Admin', 'admin123');
+    await loginAs(page, app, ADMIN_USERNAME, ADMIN_PASSWORD);
     await app.dashboardPage.expectLoaded();
 
     if (created.username) {
@@ -67,7 +68,7 @@ test.describe('E2E [UI] — RBAC Permission Boundary', () => {
 
     // 1) Authenticate as Admin
     log.step(1, 'Log in as Admin');
-    await loginAs(page, app, 'Admin', 'admin123');
+    await loginAs(page, app, ADMIN_USERNAME, ADMIN_PASSWORD);
     await app.dashboardPage.expectLoaded();
 
     // 2) Create an employee
@@ -108,7 +109,7 @@ test.describe('E2E [UI] — RBAC Permission Boundary', () => {
 
     // 9 & 10) Admin CAN reach Admin
     log.step(9, 'Log back in as Admin');
-    await loginAs(page, app, 'Admin', 'admin123');
+    await loginAs(page, app, ADMIN_USERNAME, ADMIN_PASSWORD);
     await app.dashboardPage.expectLoaded();
     log.step(10, 'Admin can reach Admin (permitted)');
     await expect(page.getByRole('link', { name: 'Admin' })).toBeVisible();

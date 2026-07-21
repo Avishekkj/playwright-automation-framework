@@ -4,6 +4,7 @@
 // ============================================================================
 
 import { expect, type Page, type Locator } from '@playwright/test';
+import { log } from '../utils/logger';
 
 // the login path is RELATIVE — the base URL comes from the config (multi-env),
 // so the same test runs against dev / staging / prod via TEST_ENV.
@@ -58,6 +59,7 @@ export class LoginPage {
 
   // a method with PARAMETERS (user, pass) = inputs the caller provides.
   async login(user: string, pass: string) {
+    log.ui(`Login as "${user}"`);       // Winston — never log the password
     await this.username.fill(user);     // this.username = the locator we saved
     await this.password.fill(pass);
     await this.loginButton.click();
