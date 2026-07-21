@@ -192,3 +192,43 @@ jobs:
           name: full-report-site
           path: site/
           retention-days: 14
+
+      # Post a pass/fail summary + links to Slack. Only runs if the
+      # SLACK_WEBHOOK_URL secret is set (Settings → Secrets → Actions).
+      - name: Notify Slack
+        if: ${{ always() }}
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        run: |
+          if [ -z "$SLACK_WEBHOOK_URL" ]; then
+            echo "SLACK_WEBHOOK_URL not set — skipping Slack notification."; exit 0
+          fi
+          owner=$(echo "${GITHUB_REPOSITORY%/*}" | tr '[:upper:]' '[:lower:]')
+          repo="${GITHUB_REPOSITORY#*/}"
+          pages="https://${owner}.github.io/${repo}/"
+          run_url="${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
+          msgs=(); overall_fail=0
+
+          add() {
+            local cat="$1" label="$2" f="site/$1/widgets/summary.json"
+            [ -f "$f" ] || return 0
+            local p fb t icon extra=""
+            p=$(jq -r '.statistic.passed // 0' "$f")
+            fb=$(jq -r '(.statistic.failed // 0) + (.statistic.broken // 0)' "$f")
+            t=$(jq -r '.statistic.total // 0' "$f")
+            icon=":white_check_mark:"
+            if [ "$fb" -gt 0 ]; then icon=":x:"; overall_fail=1; extra=" — ${fb} failed"; fi
+            msgs+=("${icon} *${label}*: ${p}/${t} passed${extra}")
+          }
+          add api "API";  add e2e-api "E2E API";  add ui "UI";  add e2e-ui "E2E UI"
+
+          header=":large_green_circle: *Zenith HR — Test Report*"
+          [ "$overall_fail" -eq 1 ] && header=":red_circle: *Zenith HR — Test Report (failures)*"
+          # printf gives us REAL newlines; jq then JSON-encodes them as \n
+          body=$(printf '%s\n' \
+            "${header}  (${GITHUB_REF_NAME} @ ${GITHUB_SHA:0:7})" \
+            "${msgs[@]}" \
+            ":bar_chart: <${pages}|Open Allure report>    :gear: <${run_url}|CI run>")
+
+          payload=$(jq -n --arg t "$body" '{text:$t}')
+          curl -sS -X POST -H 'Content-type: application/json' --data "$payload" "$SLACK_WEBHOOK_URL"
