@@ -15,5 +15,8 @@ export const AUTH_FILE = '.auth/zenith.json'; // saved session (gitignored)
 // Admin credentials. The password is read via secret() — it decrypts
 // ADMIN_PASSWORD_ENC when present (encrypted secret in .env / GitHub secrets),
 // otherwise falls back to the public demo password. No plaintext in source.
-export const ADMIN_USERNAME = process.env.ADMIN_USERNAME ?? 'Admin';
+// NB: use `||` not `??` — in CI an unset GitHub secret injects an EMPTY STRING
+// (not undefined), and `??` would keep that empty string → an unauthenticated
+// login. `||` correctly falls back to the demo credentials when empty.
+export const ADMIN_USERNAME = process.env.ADMIN_USERNAME || 'Admin';
 export const ADMIN_PASSWORD = secret('ADMIN_PASSWORD') || 'admin123';
